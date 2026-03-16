@@ -25,5 +25,5 @@ httpClient.instance.interceptors.request.use(
 attachCommonErrorInterceptor(httpClient.instance);
 attachStatusCodeErrorInterceptor(httpClient.instance);
 
-export const htcService = new Api(httpClient);
+export const drinkshopService = new Api(httpClient);
 //   export const clientService = new ClientApi(httpClient);

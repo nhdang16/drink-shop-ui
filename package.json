@@ -1,5 +1,5 @@
 {
-  "name": "htc-ui",
+  "name": "drinkshop-ui",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,36 +9,34 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.6.1",
+    "@ant-design/icons": "^6.1.0",
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
-    "@hookform/resolvers": "^4.1.3",
-    "@next/font": "^14.2.15",
-    "@supabase/supabase-js": "^2.49.4",
-    "antd": "^5.24.3",
-    "axios": "^1.8.2",
+    "@hookform/resolvers": "^5.2.2",
+    "@supabase/supabase-js": "^2.98.0",
+    "antd": "^6.3.1",
+    "axios": "^1.13.6",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "lucide-react": "^0.486.0",
-    "next": "15.1.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hook-form": "^7.54.2",
+    "lucide-react": "^0.576.0",
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-hook-form": "^7.56.0",
     "react-toastify": "^11.0.5",
-    "recharts": "^2.15.3",
-    "swagger-typescript-api": "^13.0.23",
-    "zod": "^3.24.2",
-    "zustand": "^5.0.3"
+    "recharts": "^2.15.4",
+    "swagger-typescript-api": "^13.1.0",
+    "zod": "^3.24.3",
+    "zustand": "^5.0.4"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.27",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.7",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "@eslint/eslintrc": "^3.1.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.3",
+    "@types/react-dom": "^19.0.3",
+    "eslint": "^9.21.0",
+    "eslint-config-next": "^15.2.0",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.5.4"
   }
 }

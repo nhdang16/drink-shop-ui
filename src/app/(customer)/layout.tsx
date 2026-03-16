@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { DM_Sans, Poppins, Playfair_Display } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { ConfigProvider } from "antd";
 import "@ant-design/v5-patch-for-react-19";
 import { ToastContainer } from "react-toastify";
-import { AuthProvider } from "../utils/context/AuthContext";
+import { AuthProvider } from "../../utils/context/AuthContext";
 import "@ant-design/v5-patch-for-react-19"; // 👈 Nhớ ở trên cùng
 
 const dmSans = DM_Sans({

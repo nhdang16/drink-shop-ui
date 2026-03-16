@@ -4,7 +4,7 @@ import { Form, Input, Button } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { htcService } from "@/utils/services/htcService";
+import { drinkshopService } from "@/utils/services/drinkshopService";
 import { toast } from "react-toastify";
 import { useAuth } from "@/utils/context/AuthContext";
 
@@ -26,7 +26,7 @@ export default function SigninForm() {
       };
 
       // Call the authenticateUser function from the generated API client
-      const response = await htcService.api.authenticateUser(loginData);
+      const response = await drinkshopService.api.authenticateUser(loginData);
       const data = response.data as LoginResponse;
 
       // Assuming your backend returns an object with a token field

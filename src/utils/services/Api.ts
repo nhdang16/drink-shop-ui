@@ -10,6 +10,30 @@
  * ---------------------------------------------------------------
  */
 
+export interface Category {
+  /** @format int64 */
+  id?: number;
+  name?: string;
+  description?: string;
+  products?: Product[];
+}
+
+export interface Product {
+  /** @format int64 */
+  id?: number;
+  name?: string;
+  description?: string;
+  ingredients?: string;
+  /** @format double */
+  price?: number;
+  imageUrl?: string;
+  /** @format int32 */
+  quantitySold?: number;
+  category?: Category;
+  /** @uniqueItems true */
+  likedByUsers?: User[];
+}
+
 export interface User {
   /** @format int64 */
   id?: number;
@@ -22,6 +46,37 @@ export interface User {
   createdAt?: string;
   /** @format date-time */
   updatedAt?: string;
+  /** @uniqueItems true */
+  favoriteProducts?: Product[];
+}
+
+export interface UpdateProductDTO {
+  name?: string;
+  /** @format double */
+  price?: number;
+  description?: string;
+  image?: string;
+  ingredients?: string;
+  /** @format int64 */
+  categoryId?: number;
+}
+
+export interface CategoryDTO {
+  /** @format int64 */
+  id?: number;
+  name?: string;
+  description?: string;
+}
+
+export interface CreateProductDTO {
+  name?: string;
+  /** @format double */
+  price?: number;
+  description?: string;
+  image?: string;
+  ingredients?: string;
+  /** @format int64 */
+  categoryId?: number;
 }
 
 export interface SignupRequestDTO {
@@ -34,6 +89,20 @@ export interface SignupRequestDTO {
 export interface LoginRequestDTO {
   email?: string;
   password?: string;
+}
+
+export interface ProductDTO {
+  /** @format int64 */
+  id?: number;
+  name?: string;
+  /** @format double */
+  price?: number;
+  description?: string;
+  image?: string;
+  ingredients?: string;
+  category?: string;
+  /** @format int64 */
+  categoryId?: number;
 }
 
 import type {
@@ -279,6 +348,245 @@ export class Api<SecurityDataType extends unknown> {
     /**
      * No description
      *
+     * @tags product-controller
+     * @name GetProductById
+     * @request GET:/api/products/{id}
+     * @secure
+     */
+    getProductById: (id: number, params: RequestParams = {}) =>
+      this.http.request<ProductDTO, any>({
+        path: `/api/products/${id}`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags product-controller
+     * @name UpdateProduct
+     * @request PUT:/api/products/{id}
+     * @secure
+     */
+    updateProduct: (
+      id: number,
+      data: UpdateProductDTO,
+      params: RequestParams = {},
+    ) =>
+      this.http.request<Product, any>({
+        path: `/api/products/${id}`,
+        method: "PUT",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags product-controller
+     * @name DeleteProduct
+     * @request DELETE:/api/products/{id}
+     * @secure
+     */
+    deleteProduct: (id: number, params: RequestParams = {}) =>
+      this.http.request<void, any>({
+        path: `/api/products/${id}`,
+        method: "DELETE",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags category-controller
+     * @name GetCategoryById
+     * @request GET:/api/categories/{id}
+     * @secure
+     */
+    getCategoryById: (id: number, params: RequestParams = {}) =>
+      this.http.request<Category, any>({
+        path: `/api/categories/${id}`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags category-controller
+     * @name UpdateCategory
+     * @request PUT:/api/categories/{id}
+     * @secure
+     */
+    updateCategory: (
+      id: number,
+      data: CategoryDTO,
+      params: RequestParams = {},
+    ) =>
+      this.http.request<Category, any>({
+        path: `/api/categories/${id}`,
+        method: "PUT",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags category-controller
+     * @name DeleteCategory
+     * @request DELETE:/api/categories/{id}
+     * @secure
+     */
+    deleteCategory: (id: number, params: RequestParams = {}) =>
+      this.http.request<void, any>({
+        path: `/api/categories/${id}`,
+        method: "DELETE",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags visit-controller
+     * @name RecordVisit
+     * @request POST:/api/visits
+     * @secure
+     */
+    recordVisit: (params: RequestParams = {}) =>
+      this.http.request<void, any>({
+        path: `/api/visits`,
+        method: "POST",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags product-controller
+     * @name GetAllProducts
+     * @request GET:/api/products
+     * @secure
+     */
+    getAllProducts: (
+      query?: {
+        /** @format int64 */
+        categoryId?: number;
+        /** @format double */
+        minPrice?: number;
+        /** @format double */
+        maxPrice?: number;
+        search?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.http.request<ProductDTO[], any>({
+        path: `/api/products`,
+        method: "GET",
+        query: query,
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags product-controller
+     * @name CreateProduct
+     * @request POST:/api/products
+     * @secure
+     */
+    createProduct: (data: CreateProductDTO, params: RequestParams = {}) =>
+      this.http.request<object, any>({
+        path: `/api/products`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags product-controller
+     * @name AddProductToFavorite
+     * @request POST:/api/products/favorites/{productId}
+     * @secure
+     */
+    addProductToFavorite: (productId: number, params: RequestParams = {}) =>
+      this.http.request<void, any>({
+        path: `/api/products/favorites/${productId}`,
+        method: "POST",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags product-controller
+     * @name DeleteProductFromFavorite
+     * @request DELETE:/api/products/favorites/{productId}
+     * @secure
+     */
+    deleteProductFromFavorite: (
+      productId: number,
+      params: RequestParams = {},
+    ) =>
+      this.http.request<void, any>({
+        path: `/api/products/favorites/${productId}`,
+        method: "DELETE",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags category-controller
+     * @name GetAllCategories
+     * @request GET:/api/categories
+     * @secure
+     */
+    getAllCategories: (params: RequestParams = {}) =>
+      this.http.request<CategoryDTO[], any>({
+        path: `/api/categories`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags category-controller
+     * @name CreateCategory
+     * @request POST:/api/categories
+     * @secure
+     */
+    createCategory: (data: CategoryDTO, params: RequestParams = {}) =>
+      this.http.request<Category, any>({
+        path: `/api/categories`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
      * @tags auth-controller
      * @name CreateNewUser
      * @request POST:/api/auth/register
@@ -323,6 +631,54 @@ export class Api<SecurityDataType extends unknown> {
     getAllUsers: (params: RequestParams = {}) =>
       this.http.request<User[], any>({
         path: `/api/user`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags product-controller
+     * @name GetTopSoldProducts
+     * @request GET:/api/products/top-sold
+     * @secure
+     */
+    getTopSoldProducts: (params: RequestParams = {}) =>
+      this.http.request<ProductDTO[], any>({
+        path: `/api/products/top-sold`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags product-controller
+     * @name GetFavoriteProducts
+     * @request GET:/api/products/favorites
+     * @secure
+     */
+    getFavoriteProducts: (params: RequestParams = {}) =>
+      this.http.request<ProductDTO[], any>({
+        path: `/api/products/favorites`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags product-controller
+     * @name GetProductsByCategory
+     * @request GET:/api/products/category/{categoryId}
+     * @secure
+     */
+    getProductsByCategory: (categoryId: number, params: RequestParams = {}) =>
+      this.http.request<ProductDTO[], any>({
+        path: `/api/products/category/${categoryId}`,
         method: "GET",
         secure: true,
         ...params,

@@ -4,7 +4,7 @@ import { Form, Input, Button, Checkbox } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { htcService } from "@/utils/services/htcService";
+import { drinkshopService } from "@/utils/services/drinkshopService";
 
 interface SignupFormProps {
   fullName: string;
@@ -23,7 +23,7 @@ export default function SignupForm() {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { confirmPassword, ...registrationData } = values;
     try {
-      const response = await htcService.api.createNewUser(registrationData);
+      const response = await drinkshopService.api.createNewUser(registrationData);
       console.log(response);
       if (response?.status == 200) {
         toast.success("Register Succesfully!");

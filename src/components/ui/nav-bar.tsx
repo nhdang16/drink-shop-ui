@@ -12,10 +12,10 @@ const NavBar: React.FC = () => {
   return (
     <nav className="flex gap-4">
       {buttons.map(({ name, path }) => (
-        <Link key={name} href={path} legacyBehavior>
+        <Link key={name} href={path}>
           <span
             className={`px-4 py-[2px] rounded-xl cursor-pointer focus:outline-none transition-all duration-300 ease-in-out transform ${
-              pathName == path ? "bg-[#DBDFD0] scale-100" : ""
+              pathName == path ? "bg-primary text-white scale-100" : ""
             }`}
           >
             {name}

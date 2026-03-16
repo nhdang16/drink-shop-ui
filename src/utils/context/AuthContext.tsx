@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import { useRouter } from "next/navigation";
-import { htcService } from "../services/htcService";
+import { drinkshopService } from "../services/drinkshopService";
 
 interface AuthContextType {
   currentUser: User | null;
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     if (token) {
       try {
-        const response = await htcService.api.getCurrentUser();
+        const response = await drinkshopService.api.getCurrentUser();
         setCurrentUser(response.data as User);
         setIsAuthenticated(true);
       } catch (error) {
