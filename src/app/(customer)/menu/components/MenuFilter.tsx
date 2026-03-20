@@ -43,13 +43,13 @@ const MenuFilter = ({ filter, setFilter }: MenuFilterProps) => {
     fetchCategories();
   }, []);
   return (
-    <div className="p-5 my-5 space-y-6 w-3/5">
+    <div className="p-5 my-5 space-y-6 min-w-fit rounded-lg">
       <div className="flex gap-3">
         {filterCategories.map((category) => (
           <button
             key={category.id}
             className={clsx(
-              "rounded-3xl border-[1px] border-primary flex-1 capitalize font-bold text-black py-3",
+              "rounded-3xl border-[1px] border-primary flex-1 capitalize font-bold text-black py-3 px-3 min-w-[100px]",
               filter.type == category.name && "bg-primary text-white"
             )}
             onClick={() => setFilter({ ...filter, type: category.name })}

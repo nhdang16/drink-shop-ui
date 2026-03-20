@@ -1,6 +1,7 @@
 import { useCartStore } from "@/utils/store/cartStore";
 import { Badge } from "antd";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import React from "react";
 
 const CartIconSvg = () => (
@@ -48,6 +49,14 @@ const CartIconSvg = () => (
 const CartIcon = () => {
   const { cart } = useCartStore();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // 👈 QUAN TRỌNG
+  
   return (
     <Badge
       onClick={() => router.push("/cart")}

@@ -61,6 +61,87 @@ export interface UpdateProductDTO {
   categoryId?: number;
 }
 
+export interface Discount {
+  /** @format int64 */
+  id?: number;
+  code?: string;
+  discountAmountType?: "PERCENTAGE" | "FIXED";
+  /** @format double */
+  amount?: number;
+  /** @format date-time */
+  startDate?: string;
+  /** @format date-time */
+  endDate?: string;
+  /** @format int32 */
+  quantity?: number;
+  /** @format double */
+  minimumOrderPrice?: number;
+  isActive?: boolean;
+  description?: string;
+}
+
+export interface Order {
+  /** @format int64 */
+  id?: number;
+  user?: User;
+  /** @format double */
+  totalAmount?: number;
+  /** @format date-time */
+  orderTime?: string;
+  orderDetails?: OrderDetail[];
+  payment?: Payment;
+  status?: "PENDING" | "PROCESSING" | "COMPLETED" | "CANCELLED";
+  address?: string;
+  phoneNumber?: string;
+  discount?: Discount;
+  /** @format double */
+  discountAmount?: number;
+  note?: string;
+}
+
+export interface OrderDetail {
+  /** @format int64 */
+  id?: number;
+  order?: Order;
+  product?: Product;
+  /** @format int32 */
+  quantity?: number;
+  /** @format double */
+  unitPrice?: number;
+  size?: string;
+  sugarRate?: string;
+  iceRate?: string;
+}
+
+export interface Payment {
+  /** @format int64 */
+  id?: number;
+  order?: Order;
+  /** @format double */
+  amount?: number;
+  paymentMethod?: string;
+  status?: string;
+  /** @format date-time */
+  transactionDate?: string;
+}
+
+export interface DiscountDTO {
+  code?: string;
+  discountAmountType?: "PERCENTAGE" | "FIXED";
+  /** @format double */
+  amount?: number;
+  /** @format date-time */
+  startDate?: string;
+  /** @format date-time */
+  endDate?: string;
+  /** @format int32 */
+  quantity?: number;
+  /** @format double */
+  minimumOrderPrice?: number;
+  isActive?: boolean;
+  description?: string;
+}
+
 export interface CategoryDTO {
   /** @format int64 */
   id?: number;
@@ -77,6 +158,73 @@ export interface CreateProductDTO {
   ingredients?: string;
   /** @format int64 */
   categoryId?: number;
+}
+
+export interface CartItemDTO {
+  /** @format int64 */
+  productId?: number;
+  productName?: string;
+  /** @format int32 */
+  quantity?: number;
+  /** @format double */
+  unitPrice?: number;
+  size?: string;
+  sugarRate?: string;
+  iceRate?: string;
+}
+
+export interface OrderRequest {
+  items?: CartItemDTO[];
+  /** @format double */
+  totalPrice?: number;
+  address?: string;
+  phoneNumber?: string;
+  paymentMethod?: string;
+  /** @format int64 */
+  discountId?: number;
+  /** @format double */
+  discountAmount?: number;
+  note?: string;
+}
+
+export interface OrderDTO {
+  /** @format int64 */
+  id?: number;
+  /** @format int64 */
+  userId?: number;
+  userName?: string;
+  /** @format double */
+  price?: number;
+  /** @format date-time */
+  orderTime?: string;
+  orderStatus?: "PENDING" | "PROCESSING" | "COMPLETED" | "CANCELLED";
+  payment?: PaymentDTO;
+  orderDetails?: OrderDetailsDTO[];
+  address?: string;
+  phoneNumber?: string;
+  /** @format double */
+  discountAmDouble?: number;
+  note?: string;
+}
+
+export interface OrderDetailsDTO {
+  productName?: string;
+  size?: string;
+  sugarRate?: string;
+  iceRate?: string;
+  /** @format int32 */
+  quantity?: number;
+  /** @format double */
+  unitPrice?: number;
+}
+
+export interface PaymentDTO {
+  /** @format double */
+  amount?: number;
+  paymentMethod?: string;
+  status?: string;
+  /** @format date-time */
+  transactionDate?: string;
 }
 
 export interface SignupRequestDTO {
@@ -169,7 +317,7 @@ export class HttpClient<SecurityDataType = unknown> {
   }: ApiConfig<SecurityDataType> = {}) {
     this.instance = axios.create({
       ...axiosConfig,
-      baseURL: axiosConfig.baseURL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080",
+      baseURL: axiosConfig.baseURL || "http://localhost:8080",
     });
     this.secure = secure;
     this.format = format;
@@ -402,6 +550,242 @@ export class Api<SecurityDataType extends unknown> {
     /**
      * No description
      *
+     * @tags payment-controller
+     * @name GetPaymentById
+     * @request GET:/api/payments/{id}
+     * @secure
+     */
+    getPaymentById: (id: number, params: RequestParams = {}) =>
+      this.http.request<Payment, any>({
+        path: `/api/payments/${id}`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags payment-controller
+     * @name UpdatePayment
+     * @request PUT:/api/payments/{id}
+     * @secure
+     */
+    updatePayment: (id: number, data: Payment, params: RequestParams = {}) =>
+      this.http.request<Payment, any>({
+        path: `/api/payments/${id}`,
+        method: "PUT",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags payment-controller
+     * @name DeletePayment
+     * @request DELETE:/api/payments/{id}
+     * @secure
+     */
+    deletePayment: (id: number, params: RequestParams = {}) =>
+      this.http.request<void, any>({
+        path: `/api/payments/${id}`,
+        method: "DELETE",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-controller
+     * @name UpdateOrder
+     * @request PUT:/api/orders/{id}
+     * @secure
+     */
+    updateOrder: (id: number, data: Order, params: RequestParams = {}) =>
+      this.http.request<Order, any>({
+        path: `/api/orders/${id}`,
+        method: "PUT",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-controller
+     * @name DeleteOrder
+     * @request DELETE:/api/orders/{id}
+     * @secure
+     */
+    deleteOrder: (id: number, params: RequestParams = {}) =>
+      this.http.request<void, any>({
+        path: `/api/orders/${id}`,
+        method: "DELETE",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-controller
+     * @name UpdateOrderStatus
+     * @request PUT:/api/orders/status/{id}
+     * @secure
+     */
+    updateOrderStatus: (
+      id: number,
+      data: "PENDING" | "PROCESSING" | "COMPLETED" | "CANCELLED",
+      params: RequestParams = {},
+    ) =>
+      this.http.request<Order, any>({
+        path: `/api/orders/status/${id}`,
+        method: "PUT",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-detail-controller
+     * @name GetOrderDetailById
+     * @request GET:/api/order-details/{id}
+     * @secure
+     */
+    getOrderDetailById: (id: number, params: RequestParams = {}) =>
+      this.http.request<OrderDetail, any>({
+        path: `/api/order-details/${id}`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-detail-controller
+     * @name UpdateOrderDetail
+     * @request PUT:/api/order-details/{id}
+     * @secure
+     */
+    updateOrderDetail: (
+      id: number,
+      data: OrderDetail,
+      params: RequestParams = {},
+    ) =>
+      this.http.request<OrderDetail, any>({
+        path: `/api/order-details/${id}`,
+        method: "PUT",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-detail-controller
+     * @name DeleteOrderDetail
+     * @request DELETE:/api/order-details/{id}
+     * @secure
+     */
+    deleteOrderDetail: (id: number, params: RequestParams = {}) =>
+      this.http.request<void, any>({
+        path: `/api/order-details/${id}`,
+        method: "DELETE",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags discount-controller
+     * @name GetDiscountById
+     * @request GET:/api/discounts/{id}
+     * @secure
+     */
+    getDiscountById: (id: number, params: RequestParams = {}) =>
+      this.http.request<Discount, any>({
+        path: `/api/discounts/${id}`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags discount-controller
+     * @name UpdateDiscount
+     * @request PUT:/api/discounts/{id}
+     * @secure
+     */
+    updateDiscount: (
+      id: number,
+      data: DiscountDTO,
+      params: RequestParams = {},
+    ) =>
+      this.http.request<Discount, any>({
+        path: `/api/discounts/${id}`,
+        method: "PUT",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags discount-controller
+     * @name DeleteDiscount
+     * @request DELETE:/api/discounts/{id}
+     * @secure
+     */
+    deleteDiscount: (id: number, params: RequestParams = {}) =>
+      this.http.request<void, any>({
+        path: `/api/discounts/${id}`,
+        method: "DELETE",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags discount-controller
+     * @name UpdateDiscountStatus
+     * @request PUT:/api/discounts/status/{id}
+     * @secure
+     */
+    updateDiscountStatus: (
+      id: number,
+      data: boolean,
+      params: RequestParams = {},
+    ) =>
+      this.http.request<void, any>({
+        path: `/api/discounts/status/${id}`,
+        method: "PUT",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
      * @tags category-controller
      * @name GetCategoryById
      * @request GET:/api/categories/{id}
@@ -553,6 +937,142 @@ export class Api<SecurityDataType extends unknown> {
     /**
      * No description
      *
+     * @tags payment-controller
+     * @name GetAllPayments
+     * @request GET:/api/payments
+     * @secure
+     */
+    getAllPayments: (params: RequestParams = {}) =>
+      this.http.request<Payment[], any>({
+        path: `/api/payments`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags payment-controller
+     * @name CreatePayment
+     * @request POST:/api/payments
+     * @secure
+     */
+    createPayment: (data: Payment, params: RequestParams = {}) =>
+      this.http.request<Payment, any>({
+        path: `/api/payments`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-controller
+     * @name RecordGuestOrder
+     * @request POST:/api/orders/guest/{orderId}
+     * @secure
+     */
+    recordGuestOrder: (orderId: number, params: RequestParams = {}) =>
+      this.http.request<void, any>({
+        path: `/api/orders/guest/${orderId}`,
+        method: "POST",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-controller
+     * @name Checkout
+     * @request POST:/api/orders/checkout
+     * @secure
+     */
+    checkout: (data: OrderRequest, params: RequestParams = {}) =>
+      this.http.request<OrderDTO, any>({
+        path: `/api/orders/checkout`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-detail-controller
+     * @name GetAllOrderDetails
+     * @request GET:/api/order-details
+     * @secure
+     */
+    getAllOrderDetails: (params: RequestParams = {}) =>
+      this.http.request<OrderDetail[], any>({
+        path: `/api/order-details`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-detail-controller
+     * @name CreateOrderDetail
+     * @request POST:/api/order-details
+     * @secure
+     */
+    createOrderDetail: (data: OrderDetail, params: RequestParams = {}) =>
+      this.http.request<OrderDetail, any>({
+        path: `/api/order-details`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags discount-controller
+     * @name GetAllDiscounts
+     * @request GET:/api/discounts
+     * @secure
+     */
+    getAllDiscounts: (params: RequestParams = {}) =>
+      this.http.request<Discount[], any>({
+        path: `/api/discounts`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags discount-controller
+     * @name CreateDiscount
+     * @request POST:/api/discounts
+     * @secure
+     */
+    createDiscount: (data: DiscountDTO, params: RequestParams = {}) =>
+      this.http.request<Discount, any>({
+        path: `/api/discounts`,
+        method: "POST",
+        body: data,
+        secure: true,
+        type: ContentType.Json,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
      * @tags category-controller
      * @name GetAllCategories
      * @request GET:/api/categories
@@ -679,6 +1199,102 @@ export class Api<SecurityDataType extends unknown> {
     getProductsByCategory: (categoryId: number, params: RequestParams = {}) =>
       this.http.request<ProductDTO[], any>({
         path: `/api/products/category/${categoryId}`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags payment-controller
+     * @name GetPaymentByOrderId
+     * @request GET:/api/payments/order/{orderId}
+     * @secure
+     */
+    getPaymentByOrderId: (orderId: number, params: RequestParams = {}) =>
+      this.http.request<Payment, any>({
+        path: `/api/payments/order/${orderId}`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-controller
+     * @name GetAllOrders
+     * @request GET:/api/orders
+     * @secure
+     */
+    getAllOrders: (params: RequestParams = {}) =>
+      this.http.request<OrderDTO[], any>({
+        path: `/api/orders`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-controller
+     * @name GetOrdersByUserId
+     * @request GET:/api/orders/user
+     * @secure
+     */
+    getOrdersByUserId: (params: RequestParams = {}) =>
+      this.http.request<OrderDTO[], any>({
+        path: `/api/orders/user`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-controller
+     * @name GetGuestOrder
+     * @request GET:/api/orders/guest
+     * @secure
+     */
+    getGuestOrder: (params: RequestParams = {}) =>
+      this.http.request<OrderDTO[], any>({
+        path: `/api/orders/guest`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags order-detail-controller
+     * @name GetOrderDetailsByOrder
+     * @request GET:/api/order-details/order/{orderId}
+     * @secure
+     */
+    getOrderDetailsByOrder: (orderId: number, params: RequestParams = {}) =>
+      this.http.request<OrderDetail[], any>({
+        path: `/api/order-details/order/${orderId}`,
+        method: "GET",
+        secure: true,
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags discount-controller
+     * @name GetAllActiveDiscounts
+     * @request GET:/api/discounts/active
+     * @secure
+     */
+    getAllActiveDiscounts: (params: RequestParams = {}) =>
+      this.http.request<Discount[], any>({
+        path: `/api/discounts/active`,
         method: "GET",
         secure: true,
         ...params,
