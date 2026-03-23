@@ -108,8 +108,10 @@ const ProductDetail = ({ params }: { params: Promise<{ id: number }> }) => {
           <h3 className="text-[30px] font-normal my-3">Product Details</h3>
           <ul>
             {product?.ingredients
-              .split(",")
-              .map((ing, idx) => <li key={idx}>{ing.trim()}</li>)}
+              ? product.ingredients.split(",").map((ing, idx) => (
+                  <li key={idx}>{ing.trim()}</li>
+                ))
+              : null}
           </ul>
         </div>
       </div>
