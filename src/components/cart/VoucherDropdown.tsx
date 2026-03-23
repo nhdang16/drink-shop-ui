@@ -18,7 +18,7 @@ const VoucherDropdown = ({ totalPrice }: { totalPrice: number }) => {
   const fetchVouchers = async () => {
     try {
       const response = await drinkshopService.api.getAllActiveDiscounts();
-      setVouchers(response.data);
+      setVouchers(response?.data || []);
     } catch (error) {
       console.error("Error fetching vouchers:", error);
     }

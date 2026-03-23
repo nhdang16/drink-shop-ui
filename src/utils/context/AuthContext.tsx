@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (token) {
       try {
         const response = await drinkshopService.api.getCurrentUser();
-        setCurrentUser(response.data as User);
+        setCurrentUser(response?.data as User);
         setIsAuthenticated(true);
       } catch (error) {
         console.error("Failed to fetch current user", error);
