@@ -9,7 +9,7 @@ const FavoritePage = () => {
 
   useEffect(() => {
     drinkshopService.api.getFavoriteProducts().then((res) => {
-      setFavorite(res.data);
+      setFavorite(res?.data || []);
     });
   }, []);
 

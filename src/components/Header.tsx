@@ -9,12 +9,19 @@ import FavoriteIcon from "./favorite/FavoriteIcon";
 import Avatar from "./Avatar";
 import Link from "next/link";
 import { ReceiptText } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const { isAuthenticated } = useAuth();
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {

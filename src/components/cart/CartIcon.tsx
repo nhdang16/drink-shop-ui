@@ -55,7 +55,7 @@ const CartIcon = () => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null; // 👈 QUAN TRỌNG
+  if (!mounted) return null;
   
   return (
     <Badge

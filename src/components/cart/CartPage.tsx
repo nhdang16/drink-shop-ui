@@ -5,7 +5,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import { Button, Card, Table, TableProps, Typography } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Coins, CreditCard } from "lucide-react";
 import clsx from "clsx";
 import { formatCurrency } from "@/utils/format/formatCurrency";
@@ -21,10 +21,17 @@ const CartPage = () => {
   const [paymentMethod, setPaymentMethod] = React.useState("Cash");
   const route = useRouter();
   const { isAuthenticated } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.quantity,
-    0
+    0,
   );
 
   console.log(cart);
@@ -136,7 +143,7 @@ const CartPage = () => {
                 size="large"
                 className={clsx(
                   "rounded-lg",
-                  paymentMethod === "Cash" && "bg-red-100"
+                  paymentMethod === "Cash" && "bg-red-100",
                 )}
               >
                 <Coins /> Cash
@@ -146,7 +153,7 @@ const CartPage = () => {
                 size="large"
                 className={clsx(
                   "rounded-lg",
-                  paymentMethod === "Banking" && "bg-red-100"
+                  paymentMethod === "Banking" && "bg-red-100",
                 )}
               >
                 <CreditCard /> Bank Transfer
