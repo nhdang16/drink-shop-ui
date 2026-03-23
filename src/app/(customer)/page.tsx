@@ -57,7 +57,7 @@ export default function Home() {
         >
           <div className="flex flex-col pt-16 pl-16 font-poppins h-full justify-between">
             <div className="text-primary flex flex-col text-center">
-              <h1 className="font-semibold text-[60px] font-playfair">
+              <h1 className="font-semibold text-[60px] font-playfair text-white">
                 Hem Tra Chanh
               </h1>
             </div>
