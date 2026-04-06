@@ -21,11 +21,11 @@ const SideMenu = () => {
       label: "Management",
       type: "group",
       children: [
-        // {
-        //   key: "",
-        //   icon: <DashboardOutlined />,
-        //   label: "Dashboard",
-        // },
+        {
+          key: "",
+          icon: <DashboardOutlined />,
+          label: "Dashboard",
+        },
         {
           key: "products",
           icon: <AppstoreOutlined />,
@@ -36,16 +36,16 @@ const SideMenu = () => {
           icon: <TagsOutlined />,
           label: "Categories",
         },
-        // {
-        //   key: "orders",
-        //   icon: <ShoppingOutlined />,
-        //   label: "Orders",
-        // },
-        // {
-        //   key: "discounts",
-        //   icon: <TagsOutlined />,
-        //   label: "Discounts",
-        // },
+        {
+          key: "orders",
+          icon: <ShoppingOutlined />,
+          label: "Orders",
+        },
+        {
+          key: "discounts",
+          icon: <TagsOutlined />,
+          label: "Discounts",
+        },
       ],
     },
   ];
