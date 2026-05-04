@@ -28,7 +28,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Hem Tra Chanh",
+  title: "Hẻm Trà Chanh",
   description: "Home Page",
 };
 

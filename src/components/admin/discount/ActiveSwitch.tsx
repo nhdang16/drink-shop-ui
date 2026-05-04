@@ -16,14 +16,14 @@ const ActiveSwitch = ({
     try {
       const response = await drinkshopService.api.updateDiscountStatus(id, checked);
       if (response.status === 200) {
-        toast.success("Discount status updated successfully");
+        toast.success("Cập nhật trạng thái khuyến mãi thành công");
         fetchDiscounts();
       } else {
-        toast.error("Failed to update discount status");
+        toast.error("Cập nhật trạng thái khuyến mãi thất bại");
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      toast.error("Failed to update discount status");
+      toast.error("Cập nhật trạng thái khuyến mãi thất bại");
     }
   };
 
@@ -32,8 +32,8 @@ const ActiveSwitch = ({
       style={{
         backgroundColor: active ? "#52c41a" : "#f5222d",
       }}
-      checkedChildren="Active"
-      unCheckedChildren="Inactive"
+      checkedChildren="Hoạt động"
+      unCheckedChildren="Ngừng hoạt động"
       defaultChecked={active}
       onChange={handleChange}
     />

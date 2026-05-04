@@ -27,7 +27,7 @@ interface Params {
 
 const MenuList = () => {
   const [filter, setFilter] = useState<MenuFilterType>({
-    type: "all",
+    type: "Tất cả",
     search: "",
     minPrice: 30000,
     maxPrice: 300000,
@@ -51,7 +51,7 @@ const MenuList = () => {
       try {
         const response = await drinkshopService.api.getAllCategories();
         setCategories([
-          { id: 0, name: "all" },
+          { id: 0, name: "Tất cả" },
           ...(response.data as CategoryDTO[]),
         ]);
       } catch (error) {
@@ -71,7 +71,7 @@ const MenuList = () => {
           search: filter.search,
         };
 
-        if (filter.type !== "all") {
+        if (filter.type !== "Tất cả") {
           const selectedCategory = categories.find(
             (c) => c.name === filter.type
           );

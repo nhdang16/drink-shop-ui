@@ -70,7 +70,7 @@ export default function RootLayout({
               <div className="flex-1 flex flex-col">
                 {/* Header */}
                 <header className="h-16 bg-white shadow px-6 flex items-center justify-between">
-                  <h1 className="text-lg font-semibold">Admin Dashboard</h1>
+                  <h1 className="text-lg font-semibold">Bảng điều khiển</h1>
                   {/* Bạn có thể thêm avatar, user info ở đây nếu muốn */}
 
                   <div className="flex gap-8 items-center">

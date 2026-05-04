@@ -19,7 +19,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
               title: (
                 <div className="flex gap-2">
                   <HomeOutlined />
-                  <span>Home</span>
+                  <span>Trang chủ</span>
                 </div>
               ),
             },
@@ -27,7 +27,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
               title: (
                 <>
                   <span className="font-bold text-[#AD343E]">
-                    {pathName === "/signin" ? "Sign In" : "Sign Up"}
+                    {pathName === "/signin" ? "Đăng nhập" : "Đăng ký"}
                   </span>
                 </>
               ),
@@ -47,7 +47,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
               )}
               href="/signin"
             >
-              Sign In
+              Đăng nhập
             </Link>
             <Link
               className={clsx(
@@ -58,7 +58,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
               )}
               href="/signup"
             >
-              Sign Up
+              Đăng ký
             </Link>
           </div>
           <div>{children}</div>

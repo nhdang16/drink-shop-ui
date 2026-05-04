@@ -47,7 +47,7 @@ const Profile = () => {
       reader.readAsDataURL(info.file.originFileObj);
       reader.onload = () => {
         setAvatarUrl(reader.result as string);
-        toast.success("Avatar updated!");
+        toast.success("Cập nhật ảnh đại diện thành công!");
       };
     }
   };
@@ -57,13 +57,13 @@ const Profile = () => {
       const response = await drinkshopService.api.updateUser(user.id, values);
       if (response.status === 200) {
         setIsEditing(false);
-        toast.success("Profile updated successfully!");
+        toast.success("Cập nhật hồ sơ thành công!");
         fetchUser();
       } else {
-        toast.error("Update profile failed!");
+        toast.error("Cập nhật hồ sơ thất bại!");
       }
     } catch (error) {
-      toast.error("Update profile failed!");
+      toast.error("Cập nhật hồ sơ thất bại!");
       console.error("Error updating profile:", error);
     }
   };
@@ -80,14 +80,14 @@ const Profile = () => {
           onChange={handleAvatarChange}
         >
           <Button size="small" className="mt-2" icon={<UploadOutlined />}>
-            Change Avatar
+            Đổi ảnh đại diện
           </Button>
         </Upload>
       </div>
 
       {/* Info Form */}
       <Form form={form} layout="vertical" onFinish={onFinish}>
-        <Form.Item label="Full Name" name="fullName">
+        <Form.Item label="Họ và tên" name="fullName">
           {isEditing ? (
             <Input />
           ) : (
@@ -95,7 +95,7 @@ const Profile = () => {
           )}
         </Form.Item>
 
-        <Form.Item label="Phone Number" name="phoneNumber">
+        <Form.Item label="Số điện thoại" name="phoneNumber">
           {isEditing ? (
             <Input />
           ) : (
@@ -117,7 +117,7 @@ const Profile = () => {
             onClick={() => form.submit()}
             icon={<SaveOutlined />}
           >
-            Save
+            Lưu
           </Button>
         ) : (
           <Button
@@ -125,7 +125,7 @@ const Profile = () => {
             icon={<EditOutlined />}
             onClick={() => setIsEditing(true)}
           >
-            Edit
+            Chỉnh sửa
           </Button>
         )}
       </div>

@@ -14,24 +14,24 @@ const DeleteDiscount: React.FC<Props> = ({ discountId, fetchDiscounts }) => {
     try {
       const response = await drinkshopService.api.deleteDiscount(discountId);
       if (response.status == 204) {
-        toast.success("Delete discount successfully!");
+        toast.success("Xóa khuyến mãi thành công!");
         fetchDiscounts();
       } else {
-        toast.error("Delete discount failed!");
+        toast.error("Xóa khuyến mãi thất bại!");
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      toast.error("Delete discount failed!");
+      toast.error("Xóa khuyến mãi thất bại!");
     }
   };
 
   return (
     <Popconfirm
-      title="Delete discount"
-      description="Are you sure to delete this discount?"
+      title="Xóa khuyến mãi"
+      description="Bạn có chắc chắn muốn xóa khuyến mãi này không?"
       onConfirm={confirmDelete}
-      okText="Delete"
-      cancelText="Cancel"
+      okText="Xóa"
+      cancelText="Hủy"
     >
       <Button danger icon={<Trash2 size={16} />} />
     </Popconfirm>

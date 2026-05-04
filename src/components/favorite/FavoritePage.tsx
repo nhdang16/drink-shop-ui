@@ -16,7 +16,7 @@ const FavoritePage = () => {
   return (
     <div className="bg-white py-10 flex justify-center flex-col">
       <span className="font-playfair mb-8 font-normal text-[60px] text-[#2C2F24] text-center">
-        My Favourite
+        Món yêu thích của tôi
       </span>
       <div className="flex flex-wrap gap-6 justify-center align-center">
         {favorite.map((item, index) => (

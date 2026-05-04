@@ -16,6 +16,26 @@ const statusColors = {
   CANCELLED: "bg-red-100 text-red-800",
 };
 
+const orderStatusMap: Record<string, string> = {
+  PENDING: "Chờ xử lý",
+  PROCESSING: "Đang xử lý",
+  COMPLETED: "Hoàn thành",
+  CANCELLED: "Đã hủy",
+};
+
+const paymentStatusMap: Record<string, string> = {
+  UNPAID: "Chưa thanh toán",
+  PAID: "Đã thanh toán",
+};
+
+const paymentMethodMap: Record<string, string> = {
+  CASH: "Tiền mặt",
+  Cash: "Tiền mặt",
+  TRANSFER: "Chuyển khoản",
+  Banking: "Chuyển khoản",
+  BANKING: "Chuyển khoản",
+};
+
 function OrderCard({
   fetchOrders,
   order,
@@ -31,7 +51,7 @@ function OrderCard({
     console.log(response);
     if (response.status === 200) {
       fetchOrders();
-      toast.success("Order cancelled successfully!");
+      toast.success("Hủy đơn hàng thành công!");
     }
   };
 
@@ -39,11 +59,11 @@ function OrderCard({
     <div className="border rounded-xl p-4 bg-white shadow space-y-3">
       <div className="flex justify-between items-start">
         <div>
-          <div className="font-semibold">Order #{order.id}</div>
+          <div className="font-semibold">Đơn hàng #{order.id}</div>
           <div className="text-sm text-gray-500">
             {format(
               new Date(order.orderTime as string),
-              "MMMM dd, yyyy 'at' HH:mm"
+              "dd/MM/yyyy HH:mm"
             )}
           </div>
         </div>
@@ -53,7 +73,7 @@ function OrderCard({
             statusColors[order.orderStatus as keyof typeof statusColors]
           )}
         >
-          {order.orderStatus}
+          {orderStatusMap[order.orderStatus as keyof typeof orderStatusMap] || order.orderStatus}
         </div>
       </div>
 
@@ -61,27 +81,27 @@ function OrderCard({
         <div className="text-sm text-gray-700 space-y-1 flex-1">
           {order.orderDetails?.map((item, idx) => (
             <div key={idx}>
-              {item.productName} - Size: {item.size} | Sugar: {item.sugarRate} |
-              Ice: {item.iceRate} | Quantity: {item.quantity}
+              {item.productName} - Kích cỡ: {item.size} | Đường: {item.sugarRate} |
+              Đá: {item.iceRate} | Số lượng: {item.quantity}
             </div>
           ))}
         </div>
 
         <div className="text-sm text-gray-600 space-y-1 flex-1">
           <div>
-            📍 <strong>Delivery Address:</strong> {order.address}
+            📍 <strong>Địa chỉ giao hàng:</strong> {order.address}
           </div>
           <div>
-            📞 <strong>Phone:</strong> {order.phoneNumber}
+            📞 <strong>Số điện thoại:</strong> {order.phoneNumber}
           </div>
           {order.payment?.paymentMethod && (
             <div>
-              💳 <strong>Payment Method:</strong> {order.payment?.paymentMethod}
+              💳 <strong>Phương thức thanh toán:</strong> {paymentMethodMap[order.payment?.paymentMethod] || order.payment?.paymentMethod}
             </div>
           )}
           {order.payment?.status && (
             <div>
-              📄 <strong>Payment Status:</strong> {order.payment?.status}
+              📄 <strong>Trạng thái thanh toán:</strong> {paymentStatusMap[order.payment?.status] || order.payment?.status}
             </div>
           )}
         </div>
@@ -91,13 +111,13 @@ function OrderCard({
         <div>
           {order.orderStatus == "PENDING" && (
             <Popconfirm
-              title="Cancel order"
-              description="Are you sure to Cancel this order?"
+              title="Hủy đơn hàng"
+              description="Bạn có chắc chắn muốn hủy đơn hàng này không?"
               onConfirm={handleCancel}
-              okText="Yes"
-              cancelText="Cancel"
+              okText="Đồng ý"
+              cancelText="Hủy"
             >
-              <Button type="primary">Cancel</Button>
+              <Button type="primary">Hủy đơn hàng</Button>
             </Popconfirm>
           )}
         </div>
@@ -151,7 +171,7 @@ export default function OrdersPage() {
       items={[
         {
           key: "1",
-          label: "Now",
+          label: "Hiện tại",
           children: (
             <div className="space-y-4">
               {current.map((o) => (
@@ -162,7 +182,7 @@ export default function OrdersPage() {
         },
         {
           key: "2",
-          label: "History",
+          label: "Lịch sử",
           children: (
             <div className="space-y-4">
               {history.map((o) => (

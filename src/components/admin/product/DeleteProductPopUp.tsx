@@ -14,24 +14,24 @@ const DeleteProductPopUp: React.FC<Props> = ({ productId, fetchProducts }) => {
     try {
       const response = await drinkshopService.api.deleteProduct(productId);
       if (response.status == 204) {
-        toast.success("Delete product successfully!");
+        toast.success("Xóa sản phẩm thành công!");
         fetchProducts();
       } else {
-        toast.error("Delete product failed!");
+        toast.error("Xóa sản phẩm thất bại!");
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      toast.error("Delete product failed!");
+      toast.error("Xóa sản phẩm thất bại!");
     }
   };
 
   return (
     <Popconfirm
-      title="Delete Product"
-      description="Are you sure to delete this product?"
+      title="Xóa sản phẩm"
+      description="Bạn có chắc chắn muốn xóa sản phẩm này không?"
       onConfirm={confirmDelete}
-      okText="Delete"
-      cancelText="Cancel"
+      okText="Xóa"
+      cancelText="Hủy"
     >
       <Button danger icon={<Trash2 size={16} />} />
     </Popconfirm>

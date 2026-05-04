@@ -30,7 +30,7 @@ const Avatar = () => {
                 onClick={() => router.push("/profile")}
                 className="cursor-pointer"
               >
-                My Profile
+                Hồ sơ của tôi
               </div>
             ),
           },
@@ -46,7 +46,7 @@ const Avatar = () => {
                 onClick={() => router.push("/admin")}
                 className="cursor-pointer"
               >
-                Admin Dashboard
+                Bảng điều khiển
               </div>
             ),
           },
@@ -57,7 +57,7 @@ const Avatar = () => {
       key: "logout",
       label: (
         <div onClick={logout} className="cursor-pointer text-red-500">
-          Sign out
+          Đăng xuất
         </div>
       ),
     },

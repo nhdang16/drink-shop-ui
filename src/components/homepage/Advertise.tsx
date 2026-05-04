@@ -16,7 +16,7 @@ export default function Advertise() {
       <div className="w-[460px] pl-[80px] flex-grow pt-32">
         <div className="flex flex-col">
           <span className="font-poppins text-[55px]">
-            Fastest Delivery
+            Giao hàng nhanh chóng
           </span>
         </div>
         <div className="font-sans text-lg font-medium pt-[50px] flex flex-col gap-5">
@@ -38,7 +38,7 @@ export default function Advertise() {
                 />
               </svg>
             </div>
-            <span>Delivery within 30 minutes</span>
+            <span>Giao hàng trong 30 phút</span>
           </div>
           <div className="flex items-center gap-5">
             <div className="w-8 h-8 rounded-full flex justify-center items-center">
@@ -58,7 +58,7 @@ export default function Advertise() {
                 />
               </svg>
             </div>
-            <span>Best Offer & Prices</span>
+            <span>Ưu đãi & giá tốt nhất</span>
           </div>
           <div className="flex items-center gap-5">
             <div className="w-8 h-8 rounded-full flex justify-center items-center">
@@ -78,7 +78,7 @@ export default function Advertise() {
                 />
               </svg>
             </div>
-            <span>Online Services Available</span>
+            <span>Dịch vụ trực tuyến</span>
           </div>
         </div>
       </div>

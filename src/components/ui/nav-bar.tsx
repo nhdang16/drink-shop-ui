@@ -4,9 +4,9 @@ import { usePathname } from "next/navigation";
 const NavBar: React.FC = () => {
   const pathName = usePathname();
   const buttons = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Menu", path: "/menu" },
+    { name: "Trang chủ", path: "/" },
+    { name: "Giới thiệu", path: "/about" },
+    { name: "Thực đơn", path: "/menu" },
   ];
 
   return (

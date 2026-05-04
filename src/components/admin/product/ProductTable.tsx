@@ -44,7 +44,7 @@ export default function ProductTable() {
 
   const columns: ColumnsType<ProductDTO> = [
     {
-      title: "Image",
+      title: "Hình ảnh",
       dataIndex: "image",
       render: (url) => (
         <img
@@ -55,24 +55,24 @@ export default function ProductTable() {
       ),
     },
     {
-      title: "Name",
+      title: "Tên",
       dataIndex: "name",
     },
     {
-      title: "Description",
+      title: "Mô tả",
       dataIndex: "description",
     },
     {
-      title: "Price",
+      title: "Giá",
       dataIndex: "price",
       render: (price) => `${formatCurrency(price)}`,
     },
     {
-      title: "Category",
+      title: "Danh mục",
       dataIndex: "category",
     },
     {
-      title: "Actions",
+      title: "Thao tác",
       render: (_, record) => (
         <div className="flex gap-2">
           <UpdateProductPopUp
@@ -108,7 +108,7 @@ export default function ProductTable() {
         .then((res) => {
           if (res.status == 200) {
             fetchProducts();
-            toast.success("Product added successfully!");
+            toast.success("Thêm sản phẩm thành công!");
           }
         })
         .catch((error) => {
@@ -119,7 +119,7 @@ export default function ProductTable() {
           ) {
             toast.error(error.response.data.message); // "Product name already exists"
           } else {
-            toast.error("Product name already exists!");
+            toast.error("Tên sản phẩm đã tồn tại!");
           }
         });
       setIsModalOpen(false);
@@ -140,9 +140,9 @@ export default function ProductTable() {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Product List</h2>
+        <h2 className="text-xl font-semibold">Danh sách sản phẩm</h2>
         <Button type="primary" onClick={showModal}>
-          Add Product
+          Thêm sản phẩm
         </Button>
       </div>
 
@@ -154,36 +154,36 @@ export default function ProductTable() {
       />
 
       <Modal
-        title="Add New Product"
+        title="Thêm sản phẩm mới"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        okText="Add"
+        okText="Thêm"
         style={{ top: 20 }}
       >
         <Form form={form} layout="vertical">
-          <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+          <Form.Item name="name" label="Tên" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
 
-          <Form.Item name="description" label="Description">
+          <Form.Item name="description" label="Mô tả">
             <Input />
           </Form.Item>
 
-          <Form.Item name="ingredients" label="Ingredients">
+          <Form.Item name="ingredients" label="Nguyên liệu">
             <TextArea />
           </Form.Item>
 
-          <Form.Item name="price" label="Price" rules={[{ required: true }]}>
+          <Form.Item name="price" label="Giá" rules={[{ required: true }]}>
             <InputNumber min={0} step={0.1} style={{ width: "100%" }} />
           </Form.Item>
 
           <Form.Item
             name="category"
-            label="Category"
+            label="Danh mục"
             rules={[{ required: true }]}
           >
-            <Select placeholder="Select category">
+            <Select placeholder="Chọn danh mục">
               {categories?.map((cat) => (
                 <Select.Option key={cat.id} value={cat.id}>
                   {cat.name}
@@ -209,7 +209,7 @@ export default function ProductTable() {
                     .upload(`temp/${Date.now()}-${file.name}`, file);
 
                   if (error) {
-                    toast.error("Upload failed!");
+                    toast.error("Tải ảnh thất bại!");
                     return Upload.LIST_IGNORE;
                   }
 
@@ -248,7 +248,7 @@ export default function ProductTable() {
                       }}
                     />
                   ) : (
-                    <span>Click to Upload</span>
+                    <span>Nhấn để tải ảnh lên</span>
                   )}
                 </div>
               </Upload>

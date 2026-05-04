@@ -42,7 +42,7 @@ const VoucherDropdown = ({ totalPrice }: { totalPrice: number }) => {
 
   return (
     <Select
-      placeholder="Select a voucher"
+      placeholder="Chọn voucher"
       style={{ width: "100%" }}
       onChange={handleSelect}
       optionLabelProp="label"

@@ -1,4 +1,5 @@
 "use client";
+import { ORDER_STATUS_MAP, PAYMENT_METHOD_MAP, PAYMENT_STATUS_MAP } from "@/utils/format/translate";
 import { formatCurrency } from "@/utils/format/formatCurrency";
 import { OrderDTO } from "@/utils/services/Api";
 import { drinkshopService } from "@/utils/services/drinkshopService";
@@ -50,9 +51,9 @@ const OrderTable = () => {
       );
       if (response.status === 200) {
         fetchOrders();
-        toast.success("Order status changed successfully!");
+        toast.success("Đổi trạng thái đơn hàng thành công!");
       } else {
-        toast.error("Change order status failed!");
+        toast.error("Đổi trạng thái đơn hàng thất bại!");
       }
     } catch (error) {
       console.error("Error changing order status:", error);
@@ -71,23 +72,23 @@ const OrderTable = () => {
 
   const columns: ColumnsType<OrderDTO> = [
     {
-      title: "Id",
+      title: "ID",
       dataIndex: "id",
       key: "id",
     },
     {
-      title: "Order time",
+      title: "Thời gian đặt",
       dataIndex: "orderTime",
       key: "orderTime",
       render: (time: string) => new Date(time).toLocaleString(),
     },
     {
-      title: "User",
+      title: "Người dùng",
       dataIndex: "userName",
-      render: (name: string) => name || "Anonymous",
+      render: (name: string) => name || "Khách vãng lai",
     },
     {
-      title: "Price",
+      title: "Giá",
       dataIndex: "price",
       key: "price",
       render: (_, record) => (
@@ -104,7 +105,7 @@ const OrderTable = () => {
       ),
     },
     {
-      title: "Status",
+      title: "Trạng thái",
       dataIndex: "orderStatus",
       key: "orderStatus",
       render: (
@@ -119,34 +120,34 @@ const OrderTable = () => {
         >
           {Object.keys(orderStatusColors).map((status) => (
             <Option value={status} key={status}>
-              <Tag color={orderStatusColors[status]}>{status}</Tag>
+              <Tag color={orderStatusColors[status]}>{ORDER_STATUS_MAP[status]}</Tag>
             </Option>
           ))}
         </Select>
       ),
     },
     {
-      title: "Payment",
+      title: "Thanh toán",
       dataIndex: "payment",
       key: "payment",
       render: (payment) => (
         <Tag color={paymentStatusColors[payment.status]}>
-          {payment.status} - {payment.paymentMethod}
+          {PAYMENT_STATUS_MAP[payment.status!]} - {PAYMENT_METHOD_MAP[payment.paymentMethod!]}
         </Tag>
       ),
     },
     {
-      title: "Phone",
+      title: "Số điện thoại",
       dataIndex: "phoneNumber",
       key: "phoneNumber",
     },
     {
-      title: "Address",
+      title: "Địa chỉ",
       dataIndex: "address",
       key: "address",
     },
     {
-      title: "Actions",
+      title: "Thao tác",
       key: "action",
       render: (_, record) => (
         <Button type="link" onClick={() => showDrawer(record)}>
@@ -159,7 +160,7 @@ const OrderTable = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Order List</h2>
+        <h2 className="text-xl font-semibold">Danh sách đơn hàng</h2>
       </div>
       <Table columns={columns} dataSource={orders} rowKey={"id"} />
       <Drawer
@@ -171,7 +172,7 @@ const OrderTable = () => {
         {selectedOrder && (
           <>
             <p>
-              <b>Khách hàng:</b> User #{selectedOrder.userId}
+              <b>Khách hàng:</b> {selectedOrder.userName}
             </p>
             <p>
               <b>SĐT:</b> {selectedOrder.phoneNumber}
@@ -194,14 +195,14 @@ const OrderTable = () => {
               <b>Tổng tiền:</b> {selectedOrder.price?.toLocaleString()}₫
             </p>
             <p>
-              <b>Trạng thái đơn:</b> {selectedOrder.orderStatus}
+              <b>Trạng thái đơn:</b> {ORDER_STATUS_MAP[selectedOrder.orderStatus!]}
             </p>
             <p>
               <b>Ghi chú:</b> {selectedOrder.note || "Không có ghi chú"}
             </p>
             <p>
-              <b>Thanh toán:</b> {selectedOrder.payment?.status} -{" "}
-              {selectedOrder.payment?.paymentMethod}
+              <b>Thanh toán:</b> {PAYMENT_STATUS_MAP[selectedOrder.payment?.status!]} -{" "}
+              {PAYMENT_METHOD_MAP[selectedOrder.payment?.paymentMethod!]}
             </p>
           </>
         )}

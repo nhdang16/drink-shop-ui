@@ -33,7 +33,7 @@ const MenuFilter = ({ filter, setFilter }: MenuFilterProps) => {
       try {
         const response = await drinkshopService.api.getAllCategories();
         setFilterCategories([
-          { id: 0, name: "all" },
+          { id: 0, name: "Tất cả" },
           ...(response.data as CategoryDTO[]),
         ]);
       } catch (error) {
@@ -68,7 +68,7 @@ const MenuFilter = ({ filter, setFilter }: MenuFilterProps) => {
           />
           <div>
             <label className="block text-sm font-bold text-gray-900">
-              Price
+              Giá
             </label>
             <Slider
               tooltip={{
@@ -89,10 +89,10 @@ const MenuFilter = ({ filter, setFilter }: MenuFilterProps) => {
             />
             <div className="flex w-full justify-between">
               <span className="text-xs text-black font-medium font-poppins">
-                Min: 30.000đ
+                Tối thiểu: 30.000đ
               </span>
               <span className="text-xs text-black font-medium font-poppins">
-                Max: 300.000đ
+                Tối đa: 300.000đ
               </span>
             </div>
           </div>

@@ -14,24 +14,24 @@ const DeleteCategory: React.FC<Props> = ({ categoryId, fetchCategories }) => {
     try {
       const response = await drinkshopService.api.deleteCategory(categoryId);
       if (response.status == 204) {
-        toast.success("Delete category successfully!");
+        toast.success("Xóa danh mục thành công!");
         fetchCategories();
       } else {
-        toast.error("Delete category failed!");
+        toast.error("Xóa danh mục thất bại!");
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      toast.error("Delete category failed!");
+      toast.error("Xóa danh mục thất bại!");
     }
   };
 
   return (
     <Popconfirm
-      title="Delete category"
-      description="Are you sure to delete this category?"
+      title="Xóa danh mục"
+      description="Bạn có chắc chắn muốn xóa danh mục này không?"
       onConfirm={confirmDelete}
-      okText="Delete"
-      cancelText="Cancel"
+      okText="Xóa"
+      cancelText="Hủy"
     >
       <Button danger icon={<Trash2 size={16} />} />
     </Popconfirm>

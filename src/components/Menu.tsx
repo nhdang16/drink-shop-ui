@@ -33,11 +33,11 @@ const Menu: React.FC<MenuProps> = ({
     try {
       const response = await drinkshopService.api.addProductToFavorite(id);
       if (response.status == 204) {
-        toast.success("Add to favourite successfully!");
+        toast.success("Đã thêm vào mục yêu thích!");
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      toast.error("Add to favourite failed!");
+      toast.error("Thêm vào mục yêu thích thất bại!");
     }
   };
 

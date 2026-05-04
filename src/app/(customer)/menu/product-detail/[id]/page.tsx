@@ -56,8 +56,8 @@ const ProductDetail = ({ params }: { params: Promise<{ id: number }> }) => {
       <Breadcrumb
         separator=">"
         items={[
-          { title: "Menu", href: "/menu" },
-          { title: product?.name || "Product Name" },
+          { title: "Thực đơn", href: "/menu" },
+          { title: product?.name || "Tên sản phẩm" },
         ]}
       />
 
@@ -102,10 +102,10 @@ const ProductDetail = ({ params }: { params: Promise<{ id: number }> }) => {
 
         {/* Product Detail */}
         <div>
-          <h3 className="text-[30px] font-normal my-3">Descriptions</h3>
+          <h3 className="text-[30px] font-normal my-3">Mô tả</h3>
           <p>{product?.description}</p>
 
-          <h3 className="text-[30px] font-normal my-3">Product Details</h3>
+          <h3 className="text-[30px] font-normal my-3">Chi tiết sản phẩm</h3>
           <ul>
             {product?.ingredients
               ? product.ingredients.split(",").map((ing, idx) => (
@@ -118,7 +118,7 @@ const ProductDetail = ({ params }: { params: Promise<{ id: number }> }) => {
 
       <div className="my-5 space-y-10 font-poppins text-black">
         <h2 className="text-[40px] font-normal text-center">
-          You might also like
+          Có thể bạn sẽ thích
         </h2>
         <div className="flex flex-wrap gap-6 justify-center items-center">
           {youMightLike.map((item) => (

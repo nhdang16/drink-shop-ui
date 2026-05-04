@@ -4,51 +4,51 @@ import React, { useState } from "react";
 
 const faqs = [
   {
-    question: "What are your opening hours?",
+    question: "Giờ mở cửa của quán như thế nào?",
     answer:
-      "We're open daily from 7:00 AM to 9:00 PM. Weekend hours may vary slightly during holidays—check our social media for updates!",
+      "Chúng tôi mở cửa hàng ngày từ 7:00 sáng đến 9:00 tối. Giờ mở cửa cuối tuần có thể thay đổi một chút trong các ngày lễ—hãy kiểm tra mạng xã hội của chúng tôi để cập nhật!",
   },
   {
-    question: "Do you offer non-dairy milk options?",
-    answer: "Yes, we offer oat, almond, and soy milk options for all drinks.",
+    question: "Quán có phục vụ các loại sữa thay thế không?",
+    answer: "Có, chúng tôi cung cấp các loại sữa yến mạch, hạnh nhân và đậu nành cho tất cả các loại đồ uống.",
   },
   {
-    question: "Do you sell coffee beans or tea leaves for home brewing?",
+    question: "Quán có bán hạt cà phê hoặc lá trà để pha tại nhà không?",
     answer:
-      "Absolutely! We have a selection of beans and leaves available in-store.",
+      "Có! Chúng tôi có nhiều loại hạt cà phê và lá trà để bạn lựa chọn.",
   },
   {
-    question: "Can I reserve a table or space for a group?",
-    answer: "Yes, please call us ahead or use our online reservation form.",
+    question: "Quán có phục vụ bàn hoặc không gian cho nhóm không?",
+    answer: "Có, vui lòng gọi điện thoại cho chúng tôi hoặc sử dụng biểu mẫu đặt chỗ trực tuyến của chúng tôi.",
   },
   {
-    question: "Are your products ethically sourced?",
+    question: "Các sản phẩm của quán có nguồn gốc đạo đức không?",
     answer:
-      "All our products are sourced from suppliers that follow ethical and sustainable practices.",
+      "Tất cả sản phẩm của chúng tôi đều có nguồn gốc từ các nhà cung cấp tuân thủ các hoạt động đạo đức và bền vững.",
   },
 ];
 
 const testimonials = [
   {
-    title: "“The best tea shop”",
+    title: "“Tiệm trà ngon nhất”",
     content:
-      "A hidden gem! I came in for tea and ended up staying for hours. The jasmine green tea is perfection, and the vibe is so relaxing.",
+      "Một viên ngọc ẩn! Tôi đến uống trà và cuối cùng lại ở lại hàng giờ. Trà xanh hoa nhài hoàn hảo, và không khí rất thư giãn.",
     name: "Linh Nguyen",
     location: "Hanoi, Vietnam",
     avatar: "/images/avatars/linhnguyen.png",
   },
   {
-    title: "“Simply delicious”",
+    title: "“Ngon tuyệt”",
     content:
-      "Their oat milk lattes are the best in town. And the pastries? Don’t even get me started. Try the matcha croissant—you won’t regret it!",
+      "Latte sữa yến mạch của quán là ngon nhất. Còn bánh ngọt? Hãy thử bánh croissant trà xanh—bạn sẽ không hối hận đâu!",
     name: "Lê",
     location: "Hanoi, Vietnam",
     avatar: "/images/avatars/le.png",
   },
   {
-    title: "“One of a kind drink shop”",
+    title: "“Quán nước độc đáo”",
     content:
-      "I hosted a small meetup here and everything was great. Cozy seating, fast Wi-Fi, and plenty of power outlets. It’s the perfect spot for remote work or catch-ups.",
+      "Tôi đã tổ chức một buổi gặp mặt nhỏ tại đây và mọi thứ thật tuyệt vời. Chỗ ngồi ấm cúng, Wi-Fi nhanh và có nhiều ổ cắm điện. Đó là nơi hoàn hảo để làm việc từ xa hoặc gặp gỡ bạn bè.",
     name: "Khanh Huyen",
     location: "Hanoi, Vietnam",
     avatar: "/images/avatars/huyen.png",
@@ -69,7 +69,7 @@ const page = () => {
           />
           <div className="absolute bottom-4 right-10 bg-[#AD343E] rounded-lg text-white w-[280px] shadow-lg">
             <div className="px-7 py-7">
-              <strong className="block mb-4 text-lg">Come and visit us</strong>
+              <strong className="block mb-4 text-lg">Đến với chúng tôi</strong>
               <div className="space-y-4">
                 <div className="flex gap-2 items-start">
                   <svg
@@ -131,8 +131,8 @@ const page = () => {
                     />
                   </svg>
                   <p>
-                    Km9 Nguyen Trai Street, Van Quan Ward, Nam Tu Liem, Hanoi,
-                    Vietnam
+                    Km9 Nguyễn Trãi, Phường Văn Quán, Nam Từ Liêm, Hà Nội,
+                    Việt Nam
                   </p>
                 </div>
               </div>
@@ -142,21 +142,13 @@ const page = () => {
 
         <div className="w-1/2 flex flex-col justify-center p-6 space-y-4">
           <strong className="text-6xl font-playfair font-medium">
-            A cozy corner where drink enthusiasts find their perfect cup.
+            Một góc nhỏ ấm cúng nơi những người yêu thích đồ uống tìm thấy hương vị hoàn hảo của mình.
           </strong>
           <span className="font-sans text-[18px]">
-            Founded with a passion for rich brews and warm connections, our shop
-            is more than just a place to grab a drink. It’s a space where
-            stories are shared, ideas are sparked, and every sip is crafted with
-            care. We source our beans and leaves from trusted growers who share
-            our commitment to quality and sustainability, ensuring every cup is
-            as good for the planet as it is for your soul.
+            Ra đời với niềm đam mê dành cho những tách cà phê thơm lừng và sự kết nối ấm áp, cửa hàng của chúng tôi không chỉ là nơi để thưởng thức đồ uống. Đó là không gian để chia sẻ câu chuyện, khơi nguồn cảm hứng và mỗi ngụm nước đều được pha chế với tất cả sự tận tâm. Chúng tôi thu mua nguyên liệu từ những người trồng uy tín, những người chia sẻ cam kết của chúng tôi về chất lượng và tính bền vững, đảm bảo rằng mỗi tách đồ uống không chỉ tốt cho hành tinh mà còn nuôi dưỡng tâm hồn bạn.
           </span>
           <span className="font-sans text-[16px]">
-            Whether you’re starting your morning with a bold espresso, winding
-            down with a calming herbal blend, or discovering something new from
-            our seasonal specials, we’re here to make your experience
-            meaningful.
+            Dù bạn đang bắt đầu một buổi sáng với ly espresso đậm đà, thư giãn với một tách trà thảo mộc êm dịu, hay khám phá điều gì đó mới mẻ từ các món đặc biệt theo mùa, chúng tôi luôn sẵn lòng để mang đến cho bạn những trải nghiệm ý nghĩa.
           </span>
         </div>
       </div>
@@ -206,10 +198,9 @@ const page = () => {
             />
           </svg>
           <div className="flex flex-col">
-            <strong>Multi Cuisine</strong>
+            <strong>Đa dạng hương vị</strong>
             <span className="text-sm">
-              In the new era of technology we look in the future with certainty
-              life.
+              Thưởng thức sự đa dạng với hàng loạt các loại trà và cà phê, được pha chế tỉ mỉ để đáp ứng mọi khẩu vị.
             </span>
           </div>
         </div>
@@ -266,10 +257,9 @@ const page = () => {
             />
           </svg>
           <div className="flex flex-col">
-            <strong>Easy To Order</strong>
+            <strong>Dễ dàng đặt hàng</strong>
             <span className="text-sm">
-              In the new era of technology we look in the future with certainty
-              life.
+              Đặt đồ uống yêu thích của bạn chỉ với vài cú nhấp chuột.
             </span>
           </div>
         </div>
@@ -367,10 +357,9 @@ const page = () => {
             />
           </svg>
           <div className="flex flex-col">
-            <strong>Fast Delivery</strong>
+            <strong>Giao hàng nhanh chóng</strong>
             <span className="text-sm">
-              In the new era of technology we look in the future with certainty
-              life.
+              Đội ngũ giao hàng tận tâm của chúng tôi sẽ mang đến hương vị trọn vẹn ngay tận cửa nhà bạn.
             </span>
           </div>
         </div>
@@ -378,7 +367,7 @@ const page = () => {
       <div className="bg-[#FAF9F6] px-10 py-12 flex flex-col md:flex-row gap-10">
         <div className="md:w-1/2">
           <h2 className="text-3xl font-extrabold mb-6 font-playfair">
-            Frequently Asked Questions
+            Câu hỏi thường gặp
           </h2>
           <div className="bg-white rounded-md shadow-sm divide-y">
             {faqs.map((item, idx) => (
@@ -412,7 +401,7 @@ const page = () => {
       </div>
       <section className="py-16 px-6 md:px-20 text-gray-800">
         <h2 className="text-3xl font-bold text-center mb-12">
-          What Our Customers Say
+          Đánh giá từ khách hàng
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, idx) => (

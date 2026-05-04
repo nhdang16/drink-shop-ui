@@ -29,15 +29,15 @@ export default function CategoryTable() {
       dataIndex: "id",
     },
     {
-      title: "Name",
+      title: "Tên",
       dataIndex: "name",
     },
     {
-      title: "Description",
+      title: "Mô tả",
       dataIndex: "description",
     },
     {
-      title: "Actions",
+      title: "Thao tác",
       render: (_, record) => (
         <div className="flex gap-2">
           <UpdateCategoryPopUp
@@ -68,7 +68,7 @@ export default function CategoryTable() {
         .then((res) => {
           if (res.status == 200) {
             fetchCategories();
-            toast.success("Category added successfully!");
+            toast.success("Thêm danh mục thành công!");
             setIsModalOpen(false);
           }
         })
@@ -76,7 +76,7 @@ export default function CategoryTable() {
           if (e.response && e.response.data && e.response.data.message) {
             toast.error(e.response.data.message);
           } else {
-            toast.error("Category already exist!");
+            toast.error("Danh mục đã tồn tại!");
           }
         });
     });
@@ -90,9 +90,9 @@ export default function CategoryTable() {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Category List</h2>
+        <h2 className="text-xl font-semibold">Danh sách danh mục</h2>
         <Button type="primary" onClick={showModal}>
-          Add Category
+          Thêm danh mục
         </Button>
       </div>
 
@@ -104,19 +104,19 @@ export default function CategoryTable() {
       />
 
       <Modal
-        title="Add New Category"
+        title="Thêm danh mục mới"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        okText="Add"
+        okText="Thêm"
         style={{ top: 20 }}
       >
         <Form form={form} layout="vertical">
-          <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+          <Form.Item name="name" label="Tên" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
 
-          <Form.Item name="description" label="Description">
+          <Form.Item name="description" label="Mô tả">
             <Input />
           </Form.Item>
         </Form>

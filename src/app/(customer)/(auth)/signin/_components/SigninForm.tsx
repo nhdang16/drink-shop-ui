@@ -33,7 +33,7 @@ export default function SigninForm() {
       if (data && data.token) {
         console.log("token: ", data.token);
         console.log("fullName: ", data.fullName);
-        toast.success("Login successful!");
+        toast.success("Đăng nhập thành công!");
         login(data.token);
         window.dispatchEvent(new Event("storage"));
         if (data.role == "ADMIN") {
@@ -42,11 +42,11 @@ export default function SigninForm() {
           router.push("/");
         }
       } else {
-        toast.error("Login failed: Token not received");
+        toast.error("Đăng nhập thất bại: Không nhận được token");
       }
     } catch (error) {
       console.error("Error during login:", error);
-      toast.error("Login failed!");
+      toast.error("Đăng nhập thất bại!");
     }
   };
 
@@ -60,35 +60,35 @@ export default function SigninForm() {
     >
       {/* Email */}
       <Form.Item
-        label="Email address"
+        label="Địa chỉ email"
         name="email"
         rules={[
-          { required: true, message: "Please enter your email" },
-          { type: "email", message: "Email is invalid" },
+          { required: true, message: "Vui lòng nhập email của bạn" },
+          { type: "email", message: "Email không hợp lệ" },
         ]}
       >
-        <Input placeholder="Enter your email" />
+        <Input placeholder="Nhập email của bạn" />
       </Form.Item>
 
       {/* Password */}
       <Form.Item
         name="password"
         rules={[
-          { required: true, message: "Please enter your password" },
-          { min: 8, message: "Password must be at least 8 characters" },
+          { required: true, message: "Vui lòng nhập mật khẩu" },
+          { min: 8, message: "Mật khẩu phải có ít nhất 8 ký tự" },
         ]}
       >
         <div>
           <div className="w-full flex justify-between">
-            <span>Password</span>
+            <span>Mật khẩu</span>
             <Link
               href="/forgot-password"
               className="text-[#2DA5F3] hover:underline"
             >
-              Forgot password?
+              Quên mật khẩu?
             </Link>
           </div>
-          <Input.Password placeholder="Enter your password" />
+          <Input.Password placeholder="Nhập mật khẩu của bạn" />
         </div>
       </Form.Item>
 
@@ -99,7 +99,7 @@ export default function SigninForm() {
         block
         className="py-5 uppercase font-medium flex items-center justify-center gap-2"
       >
-        Sign in <ArrowRightOutlined />
+        Đăng nhập <ArrowRightOutlined />
       </Button>
     </Form>
   );

@@ -41,7 +41,7 @@ export default function Header() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleSearch}
-            placeholder="Search Product..."
+            placeholder="Tìm kiếm sản phẩm..."
             className="w-[300px] px-4 py-1 pr-10 border border-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder:text-sm placeholder:font-sans"
           />
           <svg
@@ -87,7 +87,7 @@ export default function Header() {
                   className="rounded-md"
                   onClick={() => router.push("/signin")}
                 >
-                  Log In
+                  Đăng nhập
                 </Button>
               </Flex>
             )}

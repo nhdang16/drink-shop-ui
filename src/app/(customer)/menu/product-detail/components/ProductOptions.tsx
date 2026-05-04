@@ -13,12 +13,12 @@ const sizeIncrements = {
 
 const options = [
   {
-    label: "Size",
+    label: "Kích cỡ",
     name: "size",
     options: Object.keys(sizeIncrements).map((size) => ({ name: size })),
   },
   {
-    label: "Sugar",
+    label: "Đường",
     name: "sugar",
     options: [
       { name: "30%" },
@@ -28,7 +28,7 @@ const options = [
     ],
   },
   {
-    label: "Ice",
+    label: "Đá",
     name: "ice",
     options: [
       { name: "30%" },
@@ -132,7 +132,7 @@ const ProductOptions = ({
           onClick={handleAddToCart}
           className="bg-black text-white px-4 py-2 rounded-xl"
         >
-          + Add to cart ({price.toLocaleString()}đ)
+          + Thêm vào giỏ hàng ({price.toLocaleString()}đ)
         </button>
       </div>
     </div>

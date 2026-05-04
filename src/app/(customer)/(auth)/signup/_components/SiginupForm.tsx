@@ -26,14 +26,14 @@ export default function SignupForm() {
       const response = await drinkshopService.api.createNewUser(registrationData);
       console.log(response);
       if (response?.status == 200) {
-        toast.success("Register Succesfully!");
+        toast.success("Đăng ký thành công!");
         router.push("/signin");
       } else {
-        toast.error("Email already exists!");
+        toast.error("Email đã tồn tại!");
       }
     } catch (error) {
       console.error("Error during registration:", error);
-      toast.error("Register Failed!");
+      toast.error("Đăng ký thất bại!");
     }
   };
 
@@ -47,22 +47,22 @@ export default function SignupForm() {
     >
       {/* Name */}
       <Form.Item
-        label="Full Name"
+        label="Họ và tên"
         name="fullName"
-        rules={[{ required: true, message: "Please enter your full name" }]}
+        rules={[{ required: true, message: "Vui lòng nhập họ và tên của bạn" }]}
       >
         <Input />
       </Form.Item>
 
       {/* Phone Number */}
       <Form.Item
-        label="Phone Number"
+        label="Số điện thoại"
         name="phoneNumber"
         rules={[
-          { required: true, message: "Please enter your phone number" },
+          { required: true, message: "Vui lòng nhập số điện thoại" },
           {
             pattern: /^[0-9]{10,15}$/,
-            message: "Phone number must be 10-15 digits",
+            message: "Số điện thoại phải từ 10-15 chữ số",
           },
         ]}
       >
@@ -71,11 +71,11 @@ export default function SignupForm() {
 
       {/* Email */}
       <Form.Item
-        label="Email address"
+        label="Địa chỉ email"
         name="email"
         rules={[
-          { required: true, message: "Please enter your email" },
-          { type: "email", message: "Email is invalid" },
+          { required: true, message: "Vui lòng nhập email" },
+          { type: "email", message: "Email không hợp lệ" },
         ]}
       >
         <Input />
@@ -83,30 +83,30 @@ export default function SignupForm() {
 
       {/* Password */}
       <Form.Item
-        label="Password"
+        label="Mật khẩu"
         name="password"
         rules={[
-          { required: true, message: "Please enter your password" },
-          { min: 8, message: "Password must be at least 8 characters" },
+          { required: true, message: "Vui lòng nhập mật khẩu" },
+          { min: 8, message: "Mật khẩu phải có ít nhất 8 ký tự" },
         ]}
       >
-        <Input.Password placeholder="8+ characters" />
+        <Input.Password placeholder="8+ ký tự" />
       </Form.Item>
 
       {/* Confirm Password */}
       <Form.Item
-        label="Confirm Password"
+        label="Xác nhận mật khẩu"
         name="confirmPassword"
         dependencies={["password"]}
         rules={[
-          { required: true, message: "Please confirm your password" },
-          { min: 8, message: "Password must be at least 8 characters" },
+          { required: true, message: "Vui lòng xác nhận mật khẩu" },
+          { min: 8, message: "Mật khẩu phải có ít nhất 8 ký tự" },
           ({ getFieldValue }) => ({
             validator(_, value) {
               if (!value || getFieldValue("password") === value) {
                 return Promise.resolve();
               }
-              return Promise.reject(new Error("Passwords do not match"));
+              return Promise.reject(new Error("Mật khẩu không khớp"));
             },
           }),
         ]}
@@ -116,13 +116,13 @@ export default function SignupForm() {
 
       <Form.Item>
         <Checkbox>
-          Are you agree to Clicon{" "}
+          Bạn có đồng ý với Clicon về{" "}
           <a href="#" target="_blank" className="text-[#2DA5F3]">
-            Terms of Condition
+            Điều khoản điều kiện
           </a>{" "}
-          and{" "}
+          và{" "}
           <a href="#" target="_blank" className="text-[#2DA5F3]">
-            Privacy Policy
+            Chính sách bảo mật
           </a>
           .
         </Checkbox>
@@ -135,7 +135,7 @@ export default function SignupForm() {
         block
         className="bg-[#0B8A00] py-5 uppercase font-medium flex items-center justify-center gap-2"
       >
-        Sign up <ArrowRightOutlined />
+        Đăng ký <ArrowRightOutlined />
       </Button>
     </Form>
   );

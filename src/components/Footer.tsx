@@ -5,22 +5,22 @@ export default function Footer() {
     <footer className="h-[250px] bg-[#2B2B2B] pt-[60px]">
       <div className="h-[125px] text-white font-poppins flex gap-6 justify-end pr-12 py-6">
         <div className="flex flex-col">
-          <span className="font-semibold text-xs pb-3">Shop</span>
-          <span className="font-light text-[10px]">Blog</span>
-          <span className="font-light text-[10px]">Product</span>
-          <span className="font-light text-[10px]">Booking</span>
+          <span className="font-semibold text-xs pb-3">Cửa hàng</span>
+          <span className="font-light text-[10px]">Bài viết</span>
+          <span className="font-light text-[10px]">Sản phẩm</span>
+          <span className="font-light text-[10px]">Đặt trước</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-semibold text-xs pb-3">Legal</span>
-          <span className="font-light text-[10px]">Terms of Service</span>
-          <span className="font-light text-[10px]">Privacy Policy</span>
-          <span className="font-light text-[10px]">Cookies Policy</span>
+          <span className="font-semibold text-xs pb-3">Pháp lý</span>
+          <span className="font-light text-[10px]">Điều khoản dịch vụ</span>
+          <span className="font-light text-[10px]">Chính sách bảo mật</span>
+          <span className="font-light text-[10px]">Chính sách Cookies</span>
         </div>
         <div className="flex flex-col">
-          <span className="font-semibold text-xs pb-3">Service</span>
-          <span className="font-light text-[10px]">Sent with Courier</span>
-          <span className="font-light text-[10px]">Drive Thru</span>
-          <span className="font-light text-[10px]">In Place</span>
+          <span className="font-semibold text-xs pb-3">Dịch vụ</span>
+          <span className="font-light text-[10px]">Giao hàng tận nơi</span>
+          <span className="font-light text-[10px]">Mua mang đi</span>
+          <span className="font-light text-[10px]">Dùng tại chỗ</span>
         </div>
       </div>
       <div className="px-12">

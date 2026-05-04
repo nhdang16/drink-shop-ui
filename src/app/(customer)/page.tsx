@@ -58,14 +58,14 @@ export default function Home() {
           <div className="flex flex-col pt-16 pl-16 font-poppins h-full justify-between">
             <div className="text-primary flex flex-col text-center">
               <h1 className="font-semibold text-[60px] font-playfair text-white">
-                Hem Tra Chanh
+                Hẻm Trà Chanh
               </h1>
             </div>
             <div
               onClick={() => router.push("/menu")}
-              className="bg-white py-3 w-[125px] rounded-3xl text-center mb-12 cursor-pointer"
+              className="bg-white py-3 w-[150px] rounded-3xl text-center mb-12 cursor-pointer"
             >
-              <span className="font-semibold text-[15px]">Order Now</span>
+              <span className="font-semibold text-[15px]">Đặt hàng ngay</span>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@ export default function Home() {
 
         <div className="pt-6 flex flex-col items-center">
           <span className="font-poppins text-[60px] font-light">
-            Top Products
+            Sản phẩm nổi bật
           </span>
           <div className="flex gap-16 pt-4 pb-11">
             {topProducts.map((item) => (
@@ -93,7 +93,7 @@ export default function Home() {
             className="py-3 px-10 rounded-3xl cursor-pointer"
           >
             <span className="font-poppins font-semibold text-lg text-primary">
-              View All
+              Xem tất cả
             </span>
           </div>
         </div>
@@ -107,10 +107,10 @@ export default function Home() {
         {/* our menu */}
         <div className="flex flex-col items-center">
           <span className="font-poppins font-light text-[60px]">
-            Our Menu
+            Thực đơn của chúng tôi
           </span>
           <div className="pt-5 flex gap-6">
-            <Suspense fallback={<div>Loading menu...</div>}>
+            <Suspense fallback={<div>Đang tải thực đơn...</div>}>
               <MenuList />
             </Suspense>
           </div>

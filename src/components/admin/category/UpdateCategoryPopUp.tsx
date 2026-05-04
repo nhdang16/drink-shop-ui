@@ -34,11 +34,11 @@ const UpdateCategoryPopUp = ({ fetchCategories, category }: Props) => {
         ...values,
       });
 
-      toast.success("Category updated successfully");
+      toast.success("Cập nhật danh mục thành công");
       fetchCategories();
       onClose();
     } catch (error) {
-      toast.error("Failed to update category");
+      toast.error("Cập nhật danh mục thất bại");
       console.error(error);
     }
   };
@@ -53,19 +53,19 @@ const UpdateCategoryPopUp = ({ fetchCategories, category }: Props) => {
       <Button onClick={() => setIsModalOpen(true)} icon={<Edit size={16} />} />
 
       <Modal
-        title="Update Category"
+        title="Cập nhật danh mục"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        okText="Update"
+        okText="Cập nhật"
         style={{ top: 20 }}
       >
         <Form form={form} layout="vertical">
-          <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+          <Form.Item name="name" label="Tên" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
 
-          <Form.Item name="description" label="Description">
+          <Form.Item name="description" label="Mô tả">
             <Input />
           </Form.Item>
         </Form>

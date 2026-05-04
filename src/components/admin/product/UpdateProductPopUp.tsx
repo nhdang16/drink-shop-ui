@@ -53,11 +53,11 @@ const UpdateProductPopUp = ({
         categoryId: values.category,
       });
 
-      toast.success("Product updated successfully");
+      toast.success("Cập nhật sản phẩm thành công");
       fetchProducts();
       onClose();
     } catch (error) {
-      toast.error("Failed to update product");
+      toast.error("Cập nhật sản phẩm thất bại");
       console.error(error);
     }
   };
@@ -73,36 +73,36 @@ const UpdateProductPopUp = ({
       <Button onClick={() => setIsModalOpen(true)} icon={<Edit size={16} />} />
 
       <Modal
-        title="Update Product"
+        title="Cập nhật sản phẩm"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        okText="Update"
+        okText="Cập nhật"
         style={{ top: 20 }}
       >
         <Form form={form} layout="vertical">
-          <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+          <Form.Item name="name" label="Tên" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
 
-          <Form.Item name="description" label="Description">
+          <Form.Item name="description" label="Mô tả">
             <Input />
           </Form.Item>
 
-          <Form.Item name="ingredients" label="Ingredients">
+          <Form.Item name="ingredients" label="Nguyên liệu">
             <TextArea />
           </Form.Item>
 
-          <Form.Item name="price" label="Price" rules={[{ required: true }]}>
+          <Form.Item name="price" label="Giá" rules={[{ required: true }]}>
             <InputNumber min={0} step={0.1} style={{ width: "100%" }} />
           </Form.Item>
 
           <Form.Item
             name="category"
-            label="Category"
+            label="Danh mục"
             rules={[{ required: true }]}
           >
-            <Select placeholder="Select category">
+            <Select placeholder="Chọn danh mục">
               {categories?.map((cat) => (
                 <Select.Option key={cat.id} value={cat.id}>
                   {cat.name}
@@ -111,7 +111,7 @@ const UpdateProductPopUp = ({
             </Select>
           </Form.Item>
 
-          <Form.Item label="Product Image">
+          <Form.Item label="Hình ảnh sản phẩm">
             <div style={{ textAlign: "center" }}>
               <Upload
                 showUploadList={false}
@@ -128,7 +128,7 @@ const UpdateProductPopUp = ({
                     .upload(`temp/${Date.now()}-${file.name}`, file);
 
                   if (error) {
-                    toast.error("Upload failed!");
+                    toast.error("Tải ảnh thất bại!");
                     return Upload.LIST_IGNORE;
                   }
 
@@ -167,7 +167,7 @@ const UpdateProductPopUp = ({
                       }}
                     />
                   ) : (
-                    <span>Click to Upload</span>
+                    <span>Nhấn để tải ảnh lên</span>
                   )}
                 </div>
               </Upload>

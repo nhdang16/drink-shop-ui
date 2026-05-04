@@ -38,22 +38,22 @@ const CartPage = () => {
 
   const columns: TableProps<CartItem>["columns"] = [
     {
-      title: "Product",
+      title: "Sản phẩm",
       dataIndex: "image",
       render: (_, record) => (
         <div className="flex gap-4 items-center">
           <Image src={record.image} width={100} height={100} alt="" />
           <Link href={`/menu/product-detail/${record.id}`}>
             <Text strong>
-              {record.name} ({record.size} - {`${record.sugar} Sugar`} -
-              {`${record.ice} Ice`})
+              {record.name} ({record.size} - {`${record.sugar} Đường`} -
+              {`${record.ice} Đá`})
             </Text>
           </Link>
         </div>
       ),
     },
     {
-      title: "Quantity",
+      title: "Số lượng",
       dataIndex: "quantity",
       render: (_, record) => (
         <QuantityButton
@@ -64,7 +64,7 @@ const CartPage = () => {
       ),
     },
     {
-      title: "Total Price",
+      title: "Thành tiền",
       align: "right",
       render: (_, record) => (
         <Text>{formatCurrency(record.price * record.quantity)}</Text>
@@ -88,7 +88,7 @@ const CartPage = () => {
 
   return (
     <div className="p-16 bg-white mx-auto">
-      <Title level={2}>Shopping Cart</Title>
+      <Title level={2}>Giỏ hàng</Title>
 
       <div className="flex gap-4 mt-10">
         <Table
@@ -104,7 +104,7 @@ const CartPage = () => {
               {isAuthenticated && (
                 <Table.Summary.Row>
                   <Table.Summary.Cell index={0}>
-                    <Text strong>Voucher:</Text>
+                    <Text strong>Mã giảm giá:</Text>
                   </Table.Summary.Cell>
                   <Table.Summary.Cell index={1} colSpan={3}>
                     <VoucherDropdown totalPrice={totalPrice} />
@@ -114,7 +114,7 @@ const CartPage = () => {
               <Table.Summary.Row>
                 <Table.Summary.Cell index={0} />
                 <Table.Summary.Cell index={1}>
-                  <Text strong>Total:</Text>
+                  <Text strong>Tổng cộng:</Text>
                 </Table.Summary.Cell>
                 <Table.Summary.Cell index={0} align="right" colSpan={2}>
                   <div className="flex gap-4 font-semibold">
@@ -135,7 +135,7 @@ const CartPage = () => {
 
         <Card className="w-1/4 rounded-lg">
           <div className="flex flex-col justify-between items-stretch gap-4">
-            <Title level={3}>Pay by</Title>
+            <Title level={3}>Thanh toán bằng</Title>
 
             <div className="flex flex-col gap-4">
               <Button
@@ -146,7 +146,7 @@ const CartPage = () => {
                   paymentMethod === "Cash" && "bg-red-100",
                 )}
               >
-                <Coins /> Cash
+                <Coins /> Tiền mặt
               </Button>
               <Button
                 onClick={() => setPaymentMethod("Banking")}
@@ -156,7 +156,7 @@ const CartPage = () => {
                   paymentMethod === "Banking" && "bg-red-100",
                 )}
               >
-                <CreditCard /> Bank Transfer
+                <CreditCard /> Chuyển khoản
               </Button>
             </div>
 
@@ -169,7 +169,7 @@ const CartPage = () => {
                 route.push(`/cart/checkout?paymentMethod=${paymentMethod}`);
               }}
             >
-              Order now
+              Đặt hàng
             </Button>
           </div>
         </Card>

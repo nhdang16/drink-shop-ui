@@ -18,33 +18,33 @@ const SideMenu = () => {
   const items: MenuItem[] = [
     {
       key: "grp",
-      label: "Management",
+      label: "Quản lý",
       type: "group",
       children: [
         {
           key: "",
           icon: <DashboardOutlined />,
-          label: "Dashboard",
+          label: "Bảng điều khiển",
         },
         {
           key: "products",
           icon: <AppstoreOutlined />,
-          label: "Products",
+          label: "Sản phẩm",
         },
         {
           key: "categories",
           icon: <TagsOutlined />,
-          label: "Categories",
+          label: "Danh mục",
         },
         {
           key: "orders",
           icon: <ShoppingOutlined />,
-          label: "Orders",
+          label: "Đơn hàng",
         },
         {
           key: "discounts",
           icon: <TagsOutlined />,
-          label: "Discounts",
+          label: "Khuyến mãi",
         },
       ],
     },

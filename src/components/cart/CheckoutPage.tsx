@@ -50,11 +50,11 @@ const CheckoutPage = () => {
 
   const handleConfirmOrder = async () => {
     if (cart.length === 0) {
-      toast.info("Cart is empty!");
+      toast.info("Giỏ hàng trống!");
       return;
     }
     if (!phone || !address) {
-      toast.info("Please enter phone number and your location!");
+      toast.info("Vui lòng nhập số điện thoại và địa chỉ!");
       return;
     }
     const orderData: OrderRequest = {
@@ -78,19 +78,19 @@ const CheckoutPage = () => {
     try {
       const response = await drinkshopService.api.checkout(orderData);
       if (response.status !== 200) {
-        toast.error("Order failed!");
+        toast.error("Đặt hàng thất bại!");
         return;
       }
       if (!currentUser) {
         const orderId = response.data.id;
         await drinkshopService.api.recordGuestOrder(orderId as number);
       }
-      toast.success("Order successfully!");
+      toast.success("Đặt hàng thành công!");
       clearCart();
       router.push("/profile/order");
     } catch (e) {
       console.error("Fail while ordering!", e);
-      toast.error("Fail while ordering, please try again");
+      toast.error("Đặt hàng thất bại, vui lòng thử lại");
     }
   };
 
@@ -98,20 +98,20 @@ const CheckoutPage = () => {
     <div className="bg-white p-16">
       <div>
         <div className="flex justify-between w-full">
-          <Title level={1}>Checkout Details</Title>
+          <Title level={1}>Chi tiết thanh toán</Title>
           <span className="text-[#6E6E6E]">
-            Free delivery and free returns.
+            Giao hàng miễn phí.
           </span>
         </div>
         <span className="text-[#8A8B8D]">
-          Enter your personal details to complete your purchase.
+          Nhập thông tin cá nhân của bạn để hoàn tất việc mua hàng.
         </span>
         <div className="flex gap-4">
           <div className="w-3/4">
             <div className="my-8 space-y-4">
-              <p className="text-[#6E6E6E]">Price</p>
+              <p className="text-[#6E6E6E]">Giá</p>
               <div className="flex gap-5 items-center">
-                <label className="text-black min-w-[100px]">Total Price</label>
+                <label className="text-black min-w-[100px]">Thành tiền</label>
                 <div className="w-full px-4 py-1 border-[2px] border-[#F4F4F4] rounded-full text-black">
                   {discountAmount > 0 || loyaltyDiscount > 0 ? (
                     <div className="flex flex-col text-sm">
@@ -129,7 +129,7 @@ const CheckoutPage = () => {
                       {loyaltyDiscount > 0 && (
                         <span className="text-xs text-yellow-600 italic">
                           Giảm thêm {loyaltyDiscount * 100}% từ{" "}
-                          {currentUser?.loyaltyMember?.replace("_", " ")}
+                          {currentUser?.loyaltyMember === "LEVEL_1" ? "Thành viên cấp 1" : "Thành viên cấp 2"}
                         </span>
                       )}
                     </div>
@@ -141,43 +141,43 @@ const CheckoutPage = () => {
             </div>
             <Divider />
             <div className="my-8 space-y-4">
-              <p className="text-[#6E6E6E]">General</p>
+              <p className="text-[#6E6E6E]">Thông tin chung</p>
               <div className="flex gap-5 items-center">
-                <label className="text-black min-w-[100px]">Full Name</label>
+                <label className="text-black min-w-[100px]">Họ và tên</label>
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   type="text"
-                  placeholder="Full Name"
+                  placeholder="Họ và tên"
                   className="w-full px-4 py-1 border-[2px] border-[#F4F4F4] rounded-full text-black"
                 />
               </div>
               <div className="flex gap-5 items-center">
-                <label className="text-black min-w-[100px]">Phone</label>
+                <label className="text-black min-w-[100px]">Số điện thoại</label>
                 <input
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   type="text"
-                  placeholder="Phone"
+                  placeholder="Số điện thoại"
                   className="w-full px-4 py-1 border-[2px] border-[#F4F4F4] rounded-full text-black"
                 />
               </div>
               <div className="flex gap-5 items-center">
-                <label className="text-black min-w-[100px]">Main Address</label>
+                <label className="text-black min-w-[100px]">Địa chỉ</label>
                 <input
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   type="text"
-                  placeholder="Address"
+                  placeholder="Địa chỉ"
                   className="w-full px-4 py-1 border-[2px] border-[#F4F4F4] rounded-full text-black"
                 />
               </div>
               <div className="flex gap-5 items-start">
-                <label className="text-black min-w-[100px] mt-2">Note</label>
+                <label className="text-black min-w-[100px] mt-2">Ghi chú</label>
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  placeholder="Any note about your order..."
+                  placeholder="Ghi chú thêm về đơn hàng..."
                   className="w-full px-4 py-2 border-[2px] border-[#F4F4F4] rounded-2xl text-black"
                   rows={3}
                 />
@@ -185,16 +185,16 @@ const CheckoutPage = () => {
             </div>
             <Divider />
             <div className="my-8 space-y-4">
-              <p className="text-[#6E6E6E]">Payment Methods</p>
+              <p className="text-[#6E6E6E]">Phương thức thanh toán</p>
               <div className="flex gap-5 items-center">
-                <label className="text-black min-w-[100px]">Method</label>
+                <label className="text-black min-w-[100px]">Phương thức</label>
                 <Select
                   value={paymentMethod}
                   onChange={setPaymentMethod}
                   className="w-full"
                 >
-                  <Select.Option value="Cash">Cash</Select.Option>
-                  <Select.Option value="Banking">Banking</Select.Option>
+                  <Select.Option value="Cash">Tiền mặt</Select.Option>
+                  <Select.Option value="Banking">Chuyển khoản</Select.Option>
                 </Select>
               </div>
             </div>
@@ -203,23 +203,23 @@ const CheckoutPage = () => {
                 {/* Cột 1: Thông tin tài khoản */}
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-gray-800">
-                    Payment Information
+                    Thông tin thanh toán
                   </h3>
                   <p className="text-gray-600 mt-2">
                     <span className="font-medium text-gray-700">
-                      Bank account:
+                      Chủ tài khoản:
                     </span>{" "}
                     Phan Khanh Huyen
                   </p>
                   <p className="text-gray-600">
                     <span className="font-medium text-gray-700">
-                      Bank name:
+                      Ngân hàng:
                     </span>{" "}
                     VietinBank
                   </p>
                   <p className="text-gray-600">
                     <span className="font-medium text-gray-700">
-                      Bank number:
+                      Số tài khoản:
                     </span>{" "}
                     106873776847
                   </p>
@@ -242,8 +242,8 @@ const CheckoutPage = () => {
               className="mt-4 px-4 font-semibold bg-black text-white rounded-xl py-3 w-full"
             >
               {paymentMethod === "Cash"
-                ? "Confirm Order"
-                : "Proceed to Payment"}
+                ? "Xác nhận đặt hàng"
+                : "Tiến hành thanh toán"}
             </button>
           </div>
           <Card className="w-1/4 rounded-2xl shadow-md p-0">
@@ -274,7 +274,7 @@ const ProductCard = ({ product }: { product: CartItem }) => {
         {product.name} ({product.size})
       </Title>
       <span className="font-poppins text-black text-xs font-medium">
-        x{product.quantity} - {product.sugar} Sugar - {product.ice} Ice
+        x{product.quantity} - {product.sugar} Đường - {product.ice} Đá
       </span>
       <Divider className="my-1" />
     </div>

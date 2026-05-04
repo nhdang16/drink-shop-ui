@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 const tabs = [
-  // { name: "Profile", href: "/profile" },
-  { name: "Orders", href: "/profile/order" },
+  // { name: "Hồ sơ", href: "/profile" },
+  { name: "Đơn hàng", href: "/profile/order" },
 ];
 
 export default function ProfileLayout({

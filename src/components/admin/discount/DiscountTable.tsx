@@ -30,22 +30,22 @@ const DiscountTable = () => {
 
   const columns: ColumnsType<Discount> = [
     {
-      title: "Code",
+      title: "Mã",
       dataIndex: "code",
       key: "code",
     },
     {
-      title: "Type",
+      title: "Loại",
       dataIndex: "discountAmountType",
       key: "discountAmountType",
       render: (type) => (
         <Tag color={type === "PERCENTAGE" ? "blue" : "purple"}>
-          {type === "PERCENTAGE" ? "Percentage (%)" : "Fixed Amount (VND)"}
+          {type === "PERCENTAGE" ? "Phần trăm (%)" : "Số tiền (VND)"}
         </Tag>
       ),
     },
     {
-      title: "Amount",
+      title: "Mức giảm",
       dataIndex: "amount",
       key: "amount",
       render: (amount, record) =>
@@ -54,30 +54,30 @@ const DiscountTable = () => {
           : `${formatCurrency(amount)}`,
     },
     {
-      title: "Start Date",
+      title: "Ngày bắt đầu",
       dataIndex: "startDate",
       key: "startDate",
       render: (date) => dayjs(date).format("DD/MM/YYYY HH:mm"),
     },
     {
-      title: "End Date",
+      title: "Ngày kết thúc",
       dataIndex: "endDate",
       key: "endDate",
       render: (date) => dayjs(date).format("DD/MM/YYYY HH:mm"),
     },
     {
-      title: "Quantity",
+      title: "Số lượng",
       dataIndex: "quantity",
       key: "quantity",
     },
     {
-      title: "Min Order Price",
+      title: "Đơn tối thiểu",
       dataIndex: "minimumOrderPrice",
       key: "minimumOrderPrice",
       render: (price) => `${formatCurrency(price)}`,
     },
     {
-      title: "Status",
+      title: "Trạng thái",
       dataIndex: "isActive",
       key: "isActive",
       render: (isActive, record) => (
@@ -89,13 +89,13 @@ const DiscountTable = () => {
       ),
     },
     {
-      title: "Description",
+      title: "Mô tả",
       dataIndex: "description",
       key: "description",
       render: (desc) => desc || "-",
     },
     {
-      title: "Actions",
+      title: "Thao tác",
       key: "actions",
       render: (_, record) => (
         <div className="flex gap-2">
@@ -115,7 +115,7 @@ const DiscountTable = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold">Discount List</h2>
+        <h2 className="text-xl font-semibold">Danh sách khuyến mãi</h2>
         <AddDiscount fetchDiscounts={fetchDiscounts} />
       </div>
       <Table

@@ -55,15 +55,15 @@ const UpdateDiscount = ({ discountId, fetchDiscounts }: Props) => {
       });
 
       if (response.status !== 200) {
-        toast.error("Failed to update discount");
+        toast.error("Cập nhật khuyến mãi thất bại");
         return;
       }
 
-      toast.success("Discount updated successfully");
+      toast.success("Cập nhật khuyến mãi thành công");
       fetchDiscounts();
       onClose();
     } catch (error) {
-      toast.error("Failed to update discount");
+      toast.error("Cập nhật khuyến mãi thất bại");
       console.error(error);
     }
   };
@@ -82,11 +82,11 @@ const UpdateDiscount = ({ discountId, fetchDiscounts }: Props) => {
       />
 
       <Modal
-        title="Update Discount"
+        title="Cập nhật khuyến mãi"
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        okText="Update"
+        okText="Cập nhật"
         style={{ top: 20 }}
         width={800} // chỉnh rộng modal ra cho dễ bố cục 2 cột
       >
@@ -96,15 +96,15 @@ const UpdateDiscount = ({ discountId, fetchDiscounts }: Props) => {
             <Col span={12}>
               <Form.Item
                 name="code"
-                label="Code"
+                label="Mã"
                 rules={[
-                  { required: true, message: "Please input discount code" },
+                  { required: true, message: "Vui lòng nhập mã khuyến mãi" },
                 ]}
               >
                 <Input />
               </Form.Item>
 
-              <Form.Item label="Discount Amount" required>
+              <Form.Item label="Mức giảm" required>
                 <Row gutter={8}>
                   <Col span={10}>
                     <Form.Item
@@ -115,7 +115,7 @@ const UpdateDiscount = ({ discountId, fetchDiscounts }: Props) => {
                       ]}
                     >
                       <Select
-                        placeholder="Select type"
+                        placeholder="Chọn loại giảm giá"
                         options={[
                           { value: "PERCENTAGE", label: "%" },
                           { value: "FIXED", label: "VND" },
@@ -156,7 +156,7 @@ const UpdateDiscount = ({ discountId, fetchDiscounts }: Props) => {
                         style={{ width: "100%" }}
                         min={0}
                         step={0.01}
-                        placeholder="Enter amount"
+                        placeholder="Nhập số lượng"
                       />
                     </Form.Item>
                   </Col>
@@ -165,9 +165,9 @@ const UpdateDiscount = ({ discountId, fetchDiscounts }: Props) => {
 
               <Form.Item
                 name="startDate"
-                label="Start Date"
+                label="Ngày bắt đầu"
                 rules={[
-                  { required: true, message: "Please select start date" },
+                  { required: true, message: "Vui lòng chọn ngày bắt đầu" },
                 ]}
               >
                 <Input type="datetime-local" />
@@ -175,8 +175,8 @@ const UpdateDiscount = ({ discountId, fetchDiscounts }: Props) => {
 
               <Form.Item
                 name="endDate"
-                label="End Date"
-                rules={[{ required: true, message: "Please select end date" }]}
+                label="Ngày kết thúc"
+                rules={[{ required: true, message: "Vui lòng chọn ngày kết thúc" }]}
               >
                 <Input type="datetime-local" />
               </Form.Item>
@@ -186,13 +186,13 @@ const UpdateDiscount = ({ discountId, fetchDiscounts }: Props) => {
             <Col span={12}>
               <Form.Item
                 name="quantity"
-                label="Quantity"
+                label="Số lượng"
                 rules={[
-                  { required: true, message: "Please input quantity" },
+                  { required: true, message: "Vui lòng nhập số lượng" },
                   {
                     type: "number",
                     min: 1,
-                    message: "Quantity must be at least 1",
+                    message: "Số lượng phải ít nhất là 1",
                   },
                 ]}
               >
@@ -201,16 +201,16 @@ const UpdateDiscount = ({ discountId, fetchDiscounts }: Props) => {
 
               <Form.Item
                 name="minimumOrderPrice"
-                label="Minimum Order Price"
+                label="Giá trị đơn hàng tối thiểu"
                 rules={[
                   {
                     required: true,
-                    message: "Please input minimum order price",
+                    message: "Vui lòng nhập giá trị đơn hàng tối thiểu",
                   },
                   {
                     type: "number",
                     min: 0,
-                    message: "Must be zero or positive",
+                    message: "Phải lớn hơn hoặc bằng 0",
                   },
                 ]}
                 initialValue={0}
@@ -220,16 +220,16 @@ const UpdateDiscount = ({ discountId, fetchDiscounts }: Props) => {
 
               <Form.Item
                 name="isActive"
-                label="Status"
-                rules={[{ required: true, message: "Please select status" }]}
+                label="Trạng thái"
+                rules={[{ required: true, message: "Vui lòng chọn trạng thái" }]}
               >
                 <Radio.Group>
-                  <Radio value={true}>Active</Radio>
-                  <Radio value={false}>Inactive</Radio>
+                  <Radio value={true}>Hoạt động</Radio>
+                  <Radio value={false}>Ngừng hoạt động</Radio>
                 </Radio.Group>
               </Form.Item>
 
-              <Form.Item name="description" label="Description">
+              <Form.Item name="description" label="Mô tả">
                 <Input.TextArea rows={4} />
               </Form.Item>
             </Col>
