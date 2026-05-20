@@ -15,7 +15,7 @@ export default {
       },
       fontFamily: {
         sans: ['var(--font-dm-sans)', 'sans-serif'],
-        poppins: ['var(--font-poppins)'],
+        montserrat: ['var(--font-montserrat)'],
         playfair: ['var(--font-playfair-display)']
       }
     },

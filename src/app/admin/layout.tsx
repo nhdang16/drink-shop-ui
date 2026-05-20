@@ -1,4 +1,4 @@
-import { DM_Sans, Poppins, Playfair_Display } from "next/font/google";
+import { DM_Sans, Montserrat, Playfair_Display } from "next/font/google";
 import "../globals.css";
 import { ConfigProvider } from "antd";
 import "@ant-design/v5-patch-for-react-19";
@@ -16,10 +16,10 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 });
 
-const poppins = Poppins({
+const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-montserrat",
 });
 
 const playfair = Playfair_Display({
@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${poppins.variable} ${playfair.variable} antialiased`}
+        className={`${dmSans.variable} ${montserrat.variable} ${playfair.variable} antialiased`}
         suppressHydrationWarning
       >
         <AuthProvider>

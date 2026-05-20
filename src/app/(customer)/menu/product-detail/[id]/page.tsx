@@ -61,7 +61,7 @@ const ProductDetail = ({ params }: { params: Promise<{ id: number }> }) => {
         ]}
       />
 
-      <div className="mx-16 my-5 space-y-10 font-poppins text-black">
+      <div className="mx-16 my-5 space-y-10 font-montserrat text-black">
         {/* Top */}
         <div className="flex gap-16 justify-between ">
           {/* Product Image */}
@@ -116,7 +116,7 @@ const ProductDetail = ({ params }: { params: Promise<{ id: number }> }) => {
         </div>
       </div>
 
-      <div className="my-5 space-y-10 font-poppins text-black">
+      <div className="my-5 space-y-10 font-montserrat text-black">
         <h2 className="text-[40px] font-normal text-center">
           Có thể bạn sẽ thích
         </h2>

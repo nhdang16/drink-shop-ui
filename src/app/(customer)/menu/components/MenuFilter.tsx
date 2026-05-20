@@ -88,10 +88,10 @@ const MenuFilter = ({ filter, setFilter }: MenuFilterProps) => {
               }}
             />
             <div className="flex w-full justify-between">
-              <span className="text-xs text-black font-medium font-poppins">
+              <span className="text-xs text-black font-medium font-montserrat">
                 Tối thiểu: 30.000đ
               </span>
-              <span className="text-xs text-black font-medium font-poppins">
+              <span className="text-xs text-black font-medium font-montserrat">
                 Tối đa: 300.000đ
               </span>
             </div>

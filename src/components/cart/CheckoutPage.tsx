@@ -273,7 +273,7 @@ const ProductCard = ({ product }: { product: CartItem }) => {
       <Title className="my-2" level={3}>
         {product.name} ({product.size})
       </Title>
-      <span className="font-poppins text-black text-xs font-medium">
+      <span className="font-montserrat text-black text-xs font-medium">
         x{product.quantity} - {product.sugar} Đường - {product.ice} Đá
       </span>
       <Divider className="my-1" />

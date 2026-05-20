@@ -55,7 +55,7 @@ export default function Home() {
           style={{ backgroundImage: "url('/images/About.jpg')" }}
           className="h-[500px] bg-cover bg-center"
         >
-          <div className="flex flex-col pt-16 pl-16 font-poppins h-full justify-between">
+          <div className="flex flex-col pt-16 pl-16 font-montserrat h-full justify-between">
             <div className="text-primary flex flex-col text-center">
               <h1 className="font-semibold text-[60px] font-playfair text-white">
                 Hẻm Trà Chanh
@@ -72,7 +72,7 @@ export default function Home() {
         {/* background image */}
 
         <div className="pt-6 flex flex-col items-center">
-          <span className="font-poppins text-[60px] font-light">
+          <span className="font-montserrat text-[60px] font-light">
             Sản phẩm nổi bật
           </span>
           <div className="flex gap-16 pt-4 pb-11">
@@ -92,7 +92,7 @@ export default function Home() {
             onClick={() => router.push("/menu")}
             className="py-3 px-10 rounded-3xl cursor-pointer"
           >
-            <span className="font-poppins font-semibold text-lg text-primary">
+            <span className="font-montserrat font-semibold text-lg text-primary">
               Xem tất cả
             </span>
           </div>
@@ -106,7 +106,7 @@ export default function Home() {
 
         {/* our menu */}
         <div className="flex flex-col items-center">
-          <span className="font-poppins font-light text-[60px]">
+          <span className="font-montserrat font-light text-[60px]">
             Thực đơn của chúng tôi
           </span>
           <div className="pt-5 flex gap-6">

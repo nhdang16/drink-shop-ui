@@ -15,7 +15,7 @@ export default function Advertise() {
       {/* right */}
       <div className="w-[460px] pl-[80px] flex-grow pt-32">
         <div className="flex flex-col">
-          <span className="font-poppins text-[55px]">
+          <span className="font-montserrat text-[55px]">
             Giao hàng nhanh chóng
           </span>
         </div>

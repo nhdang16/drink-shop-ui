@@ -10,7 +10,7 @@ interface DrinkProps {
 
 const Drink: React.FC<DrinkProps> = ({ imagePath, name, category, price }) => {
   return (
-    <div className="flex flex-col gap-2 font-poppins group">
+    <div className="flex flex-col gap-2 font-montserrat group">
       <div className="relative overflow-hidden bg-[#F4F4F4] rounded-xl py-4 transition-transform duration-300">
         <img
           src={imagePath}

@@ -3,7 +3,7 @@
 export default function Footer() {
   return (
     <footer className="h-[250px] bg-[#2B2B2B] pt-[60px]">
-      <div className="h-[125px] text-white font-poppins flex gap-6 justify-end pr-12 py-6">
+      <div className="h-[125px] text-white font-montserrat flex gap-6 justify-end pr-12 py-6">
         <div className="flex flex-col">
           <span className="font-semibold text-xs pb-3">Cửa hàng</span>
           <span className="font-light text-[10px]">Bài viết</span>
